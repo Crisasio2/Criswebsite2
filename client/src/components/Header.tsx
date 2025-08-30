@@ -22,7 +22,6 @@ export default function Header({ onCartToggle }: HeaderProps) {
         <div className="ecrist-logo-icon">🌿</div>
         E'Crist Commerce
       </Link>
-      
       <nav className="ecrist-nav-menu">
         <Link 
           href="/" 
@@ -53,15 +52,12 @@ export default function Header({ onCartToggle }: HeaderProps) {
           Nosotros
         </Link>
       </nav>
-      
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 'clamp(8px, 2vw, 10px)' }}>
         <button 
           className="ecrist-cart-btn" 
           onClick={onCartToggle}
           data-testid="button-cart"
-        >
-          🛒 Cart
-          {totalItems > 0 && (
+        >Carro 🛒{totalItems > 0 && (
             <span className="ecrist-cart-count" data-testid="text-cart-count">
               {totalItems}
             </span>
