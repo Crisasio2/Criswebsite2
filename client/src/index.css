@@ -475,6 +475,7 @@
     inset 0 -1px 0 hsla(0, 0%, 0%, 0.1) !important;
   position: relative;
   overflow: hidden;
+  z-index: 1000;
 }
 
 .modern-blur-modal::before {
@@ -556,6 +557,22 @@
     0 10px 30px hsla(82, 38%, 35%, 0.5),
     0 4px 15px hsla(82, 38%, 35%, 0.4),
     inset 0 1px 0 hsla(255, 255, 255, 0.3) !important;
+}
+
+/* Fix for preventing gray screen issues */
+.ecrist-hero-extended,
+.ecrist-hero-extended * {
+  isolation: isolate;
+}
+
+.modern-blur-modal {
+  isolation: isolate;
+}
+
+/* Ensure proper layering */
+.ecrist-container {
+  position: relative;
+  z-index: 1;
 }
 
 .ecrist-search-form {

@@ -27,7 +27,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
 
   return (
     <div 
-      className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center animate-fadeIn"
+      className="fixed inset-0 bg-black bg-opacity-50 z-[9999] flex items-center justify-center animate-fadeIn"
       onClick={handleOverlayClick}
       data-testid="modal-cart"
     >

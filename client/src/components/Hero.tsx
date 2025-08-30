@@ -39,7 +39,7 @@ export default function Hero({ onSearch }: HeroProps) {
     <section 
       className="ecrist-hero-extended"
       style={{
-        backgroundImage: `url(${naturalezaImage}?cache=${Math.random()})`,
+        backgroundImage: `url(${naturalezaImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}
