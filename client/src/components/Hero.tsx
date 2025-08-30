@@ -13,7 +13,7 @@ export default function Hero() {
         <div className="ecrist-leaf ecrist-leaf-9 bg-[#001cba9c]"></div>
         <div className="ecrist-leaf ecrist-leaf-10 bg-[#0084ff]"></div>
         <div className="ecrist-leaf ecrist-leaf-11 bg-[#0084ff]"></div>
-        <div className="ecrist-leaf ecrist-leaf-12"></div>
+        <div className="ecrist-leaf ecrist-leaf-12 bg-[#001cba9c]"></div>
       </div>
       <div className="ecrist-hero-content">
         <h1 className="ecrist-hero-title" data-testid="text-hero-title">
