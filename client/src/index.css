@@ -489,8 +489,8 @@
   z-index: 1000;
 }
 
-/* Special styling for cart modal */
-.cart-modal-content {
+/* Cart modal backdrop with static blur */
+.cart-modal-backdrop {
   background: rgba(0, 0, 0, 0.4) !important;
   backdrop-filter: blur(20px) saturate(150%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
@@ -503,6 +503,10 @@
   position: relative;
   overflow: hidden;
   z-index: 1000;
+}
+
+/* Animated inner content */
+.cart-modal-inner {
   animation: cartSlideUpSimple 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
@@ -524,7 +528,7 @@
   pointer-events: none;
 }
 
-.cart-modal-content::before {
+.cart-modal-backdrop::before {
   content: '';
   position: absolute;
   top: 0;

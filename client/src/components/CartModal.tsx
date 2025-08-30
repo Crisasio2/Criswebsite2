@@ -31,7 +31,8 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
       onClick={handleOverlayClick}
       data-testid="modal-cart"
     >
-      <div className="cart-modal-content rounded-2xl p-8 max-w-lg w-full max-h-[70vh] overflow-y-auto mx-4">
+      <div className="cart-modal-backdrop rounded-2xl max-w-lg w-full max-h-[70vh] mx-4">
+        <div className="cart-modal-inner p-8 h-full overflow-y-auto">
         <div className="flex justify-between items-center mb-5 border-b border-gray-100 pb-4">
           <h3 className="text-2xl font-bold modern-blur-text" data-testid="text-cart-title">
             Tu Carrito
@@ -122,6 +123,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
             </div>
           </>
         )}
+        </div>
       </div>
     </div>
   );
