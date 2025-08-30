@@ -505,7 +505,7 @@
   opacity: 1;
   transform: translateY(0);
   will-change: transform, opacity;
-  animation: directSlideUp 1.6s ease-out both;
+  animation: directSlideUp 1s ease-out both;
 }
 
 .modern-blur-modal::before {
