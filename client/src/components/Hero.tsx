@@ -10,7 +10,7 @@ export default function Hero() {
         <div className="ecrist-leaf ecrist-leaf-6"></div>
         <div className="ecrist-leaf ecrist-leaf-7 bg-[#0084ff]"></div>
         <div className="ecrist-leaf ecrist-leaf-8"></div>
-        <div className="ecrist-leaf ecrist-leaf-9"></div>
+        <div className="ecrist-leaf ecrist-leaf-9 bg-[#001cba9c]"></div>
         <div className="ecrist-leaf ecrist-leaf-10 bg-[#0084ff]"></div>
         <div className="ecrist-leaf ecrist-leaf-11 bg-[#0084ff]"></div>
         <div className="ecrist-leaf ecrist-leaf-12"></div>
