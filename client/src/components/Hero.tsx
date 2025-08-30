@@ -5,7 +5,7 @@ export default function Hero() {
     <section 
       className="ecrist-hero"
       style={{
-        backgroundImage: `url(${naturalezaImage})`,
+        backgroundImage: `url(${naturalezaImage}?v=${Date.now()})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}
