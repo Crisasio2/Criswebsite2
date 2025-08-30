@@ -25,7 +25,7 @@ export default function Header({ onCartToggle }: HeaderProps) {
       <nav className="ecrist-nav-menu">
         <Link 
           href="/" 
-          className="ecrist-nav-link active text-center"
+          className={`ecrist-nav-link ${isActive('/') ? 'active' : ''}`}
           data-testid="link-home"
         >
           Inicio
