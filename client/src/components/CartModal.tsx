@@ -31,13 +31,13 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
       onClick={handleOverlayClick}
       data-testid="modal-cart"
     >
-      <div className="bg-white rounded-2xl p-8 max-w-lg w-full max-h-[70vh] overflow-y-auto mx-4 animate-slideUp">
+      <div className="modern-blur-modal rounded-2xl p-8 max-w-lg w-full max-h-[70vh] overflow-y-auto mx-4 animate-slideUp">
         <div className="flex justify-between items-center mb-5 border-b border-gray-100 pb-4">
-          <h3 className="text-2xl font-bold" style={{ color: 'var(--ecrist-text-primary)' }} data-testid="text-cart-title">
+          <h3 className="text-2xl font-bold modern-blur-text" data-testid="text-cart-title">
             Tu Carrito
           </h3>
           <button 
-            className="text-2xl text-gray-400 hover:text-gray-600 transition-colors"
+            className="text-2xl modern-blur-text hover:opacity-75 transition-all"
             onClick={onClose}
             data-testid="button-close-cart"
           >
@@ -46,7 +46,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
         </div>
         
         {items.length === 0 ? (
-          <div className="text-center text-gray-500 italic my-10" data-testid="text-empty-cart">
+          <div className="text-center modern-blur-text-muted italic my-10" data-testid="text-empty-cart">
             Tu carrito está vacío
           </div>
         ) : (
@@ -60,15 +60,13 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                 >
                   <div className="flex-1">
                     <div 
-                      className="font-semibold mb-1"
-                      style={{ color: 'var(--ecrist-text-primary)' }}
+                      className="font-semibold mb-1 modern-blur-text"
                       data-testid={`text-cart-item-name-${item.id}`}
                     >
                       {item.product.name}
                     </div>
                     <div 
-                      className="font-semibold"
-                      style={{ color: 'var(--ecrist-primary)' }}
+                      className="font-semibold modern-blur-text"
                       data-testid={`text-cart-item-price-${item.id}`}
                     >
                       S/{item.product.price}
@@ -82,7 +80,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                       >
                         -
                       </button>
-                      <span className="font-semibold" data-testid={`text-quantity-${item.id}`}>
+                      <span className="font-semibold modern-blur-text" data-testid={`text-quantity-${item.id}`}>
                         {item.quantity}
                       </span>
                       <button 
@@ -109,15 +107,13 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
             
             <div className="text-center mt-5 pt-5 border-t-2 border-gray-100">
               <div 
-                className="text-2xl font-bold mb-5"
-                style={{ color: 'var(--ecrist-text-primary)' }}
+                className="text-2xl font-bold mb-5 modern-blur-text"
                 data-testid="text-cart-total"
               >
                 Total: S/{getTotalPrice().toFixed(2)}
               </div>
               <button 
-                className="w-full py-4 text-white rounded-xl text-lg font-semibold transition-all hover:transform hover:translate-y-[-2px]"
-                style={{ background: 'var(--ecrist-primary)' }}
+                className="w-full py-4 rounded-xl text-lg font-semibold modern-blur-button"
                 onClick={handleCheckout}
                 data-testid="button-checkout"
               >
