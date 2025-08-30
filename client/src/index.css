@@ -226,7 +226,7 @@
 .ecrist-sign-up-btn {
   background: var(--ecrist-primary);
   color: white;
-  padding: clamp(6px, 1.5vh, 8px) clamp(16px, 3vw, 20px);
+  padding: clamp(6px, 1.5vh, 8px) clamp(12px, 2.5vw, 16px);
   border: none;
   border-radius: clamp(15px, 3vw, 20px);
   font-weight: 500;
@@ -235,6 +235,11 @@
   font-size: clamp(12px, 2.5vw, 14px);
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px hsla(82, 38%, 35%, 0.3);
+  min-width: clamp(75px, 12vw, 95px);
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ecrist-sign-up-btn:hover {
@@ -246,7 +251,7 @@
 .ecrist-cart-btn {
   background: var(--ecrist-secondary);
   color: white;
-  padding: clamp(6px, 1.5vh, 8px) clamp(16px, 3vw, 20px);
+  padding: clamp(6px, 1.5vh, 8px) clamp(12px, 2.5vw, 16px);
   border: none;
   border-radius: clamp(15px, 3vw, 20px);
   font-weight: 500;
@@ -256,6 +261,11 @@
   box-shadow: 0 4px 15px hsla(140, 31%, 72%, 0.3);
   margin-right: clamp(8px, 2vw, 10px);
   position: relative;
+  min-width: clamp(75px, 12vw, 95px);
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ecrist-cart-btn:hover {
