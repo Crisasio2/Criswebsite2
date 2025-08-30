@@ -567,12 +567,23 @@
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 640px) {
+  .ecrist-header {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .ecrist-logo {
+    justify-self: center;
+    grid-row: 1;
+  }
+  
   .ecrist-nav-menu {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    margin-top: 15px;
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
     gap: 15px;
     flex-wrap: wrap;
   }
@@ -581,6 +592,13 @@
     font-size: 14px;
   }
   
+  .ecrist-header > div {
+    grid-row: 3;
+    justify-self: center !important;
+  }
+}
+
+@media (max-width: 480px) {
   .ecrist-search-form {
     flex-direction: column;
     gap: 15px;
