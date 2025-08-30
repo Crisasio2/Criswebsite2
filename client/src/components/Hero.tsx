@@ -2,7 +2,7 @@ export default function Hero() {
   return (
     <section className="ecrist-hero">
       <div className="ecrist-leaf-frame">
-        <div className="ecrist-leaf ecrist-leaf-1"></div>
+        <div className="ecrist-leaf ecrist-leaf-1 bg-[#001cba9c]"></div>
         <div className="ecrist-leaf ecrist-leaf-2 bg-[#0084ff]"></div>
         <div className="ecrist-leaf ecrist-leaf-3"></div>
         <div className="ecrist-leaf ecrist-leaf-4 bg-[#0084ff]"></div>
