@@ -186,7 +186,7 @@
   display: flex;
   list-style: none;
   gap: 35px;
-  margin-right: clamp(15px, 3vw, 25px);
+  margin-right: clamp(20px, 4vw, 30px);
 }
 
 .ecrist-nav-link {
