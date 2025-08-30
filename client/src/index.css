@@ -141,7 +141,7 @@
 /* Header */
 .ecrist-header {
   background: var(--ecrist-white);
-  padding: clamp(15px, 3vh, 20px) clamp(20px, 5vw, 40px);
+  padding: clamp(15px, 3vh, 20px) clamp(25px, 6vw, 45px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -186,7 +186,7 @@
   display: flex;
   list-style: none;
   gap: 35px;
-  margin-right: clamp(20px, 5vw, 40px);
+  margin-right: clamp(15px, 3vw, 25px);
 }
 
 .ecrist-nav-link {
