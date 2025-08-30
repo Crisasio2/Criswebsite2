@@ -60,7 +60,7 @@ export default function Header({ onCartToggle }: HeaderProps) {
           onClick={onCartToggle}
           data-testid="button-cart"
         >
-          🛒 Carrito
+          🛒 Cart
           {totalItems > 0 && (
             <span className="ecrist-cart-count" data-testid="text-cart-count">
               {totalItems}
