@@ -14,7 +14,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
     if (items.length === 0) return;
     
     const total = getTotalPrice();
-    alert(`¡Gracias por tu compra! Total: €${total.toFixed(2)}`);
+    alert(`¡Gracias por tu compra! Total: S/${total.toFixed(2)}`);
     clearCart();
     onClose();
   };
@@ -71,7 +71,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                       style={{ color: 'var(--ecrist-primary)' }}
                       data-testid={`text-cart-item-price-${item.id}`}
                     >
-                      €{item.product.price}
+                      S/{item.product.price}
                     </div>
                     <div className="flex items-center gap-3 mt-2">
                       <button 
@@ -113,7 +113,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                 style={{ color: 'var(--ecrist-text-primary)' }}
                 data-testid="text-cart-total"
               >
-                Total: €{getTotalPrice().toFixed(2)}
+                Total: S/{getTotalPrice().toFixed(2)}
               </div>
               <button 
                 className="w-full py-4 text-white rounded-xl text-lg font-semibold transition-all hover:transform hover:translate-y-[-2px]"

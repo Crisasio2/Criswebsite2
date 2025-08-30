@@ -35,7 +35,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.description}
         </div>
         <div className="ecrist-product-price" data-testid={`text-product-price-${product.id}`}>
-          €{product.price}
+          S/{product.price}
         </div>
         <button 
           className="ecrist-add-to-cart-btn"
