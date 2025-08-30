@@ -17,7 +17,7 @@ export default function Header({ onCartToggle }: HeaderProps) {
   };
 
   return (
-    <header className="ecrist-header bg-[#3eff0021]">
+    <header className="ecrist-header bg-[#001cba9c]">
       <Link href="/" className="ecrist-logo" data-testid="link-logo">
         <div className="ecrist-logo-icon">🌿</div>
         E'Crist Commerce
