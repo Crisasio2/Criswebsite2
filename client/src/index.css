@@ -127,21 +127,21 @@
 
 /* Main Container */
 .ecrist-container {
-  max-width: 1200px;
+  max-width: min(1200px, 95vw);
   margin: 0 auto;
   background: var(--ecrist-white);
-  border-radius: 20px;
+  border-radius: clamp(15px, 2vw, 20px);
   overflow: hidden;
   box-shadow: 0 10px 40px var(--ecrist-shadow);
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: clamp(10px, 2vh, 20px);
+  margin-bottom: clamp(10px, 2vh, 20px);
   animation: fadeInScale 1s ease-out;
 }
 
 /* Header */
 .ecrist-header {
   background: var(--ecrist-white);
-  padding: 20px 40px;
+  padding: clamp(15px, 3vh, 20px) clamp(20px, 5vw, 40px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -151,8 +151,8 @@
 .ecrist-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 18px;
+  gap: clamp(8px, 1.5vw, 12px);
+  font-size: clamp(16px, 2.5vw, 18px);
   font-weight: 600;
   color: var(--ecrist-text-primary);
   transition: transform 0.3s ease;
@@ -283,7 +283,7 @@
 /* Hero Section */
 .ecrist-hero {
   position: relative;
-  height: 400px;
+  height: clamp(300px, 50vh, 400px);
   background: linear-gradient(135deg, var(--ecrist-secondary) 0%, var(--ecrist-accent) 100%);
   display: flex;
   align-items: center;
@@ -333,18 +333,18 @@
 }
 
 .ecrist-hero-title {
-  font-size: 48px;
+  font-size: clamp(28px, 6vw, 48px);
   font-weight: 800;
   line-height: 1.1;
-  margin-bottom: 15px;
+  margin-bottom: clamp(10px, 2vh, 15px);
   letter-spacing: -0.5px;
   text-shadow: 2px 2px 4px hsla(82, 64%, 20%, 0.3);
   animation: slideUp 1s ease-out 0.7s both;
 }
 
 .ecrist-hero-subtitle {
-  font-size: 16px;
-  margin-bottom: 50px;
+  font-size: clamp(14px, 2.5vw, 16px);
+  margin-bottom: clamp(30px, 8vh, 50px);
   opacity: 0.95;
   font-weight: 400;
   text-shadow: 1px 1px 2px hsla(82, 64%, 20%, 0.3);
@@ -358,7 +358,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 40px;
+  padding: clamp(40px, 8vh, 60px) clamp(20px, 5vw, 40px);
   background: var(--ecrist-white);
 }
 
@@ -445,22 +445,22 @@
 
 /* Products Section */
 .ecrist-products-section {
-  padding: 60px 40px;
+  padding: clamp(40px, 8vh, 60px) clamp(20px, 5vw, 40px);
   background: var(--ecrist-background);
 }
 
 .ecrist-products-title {
   text-align: center;
-  font-size: 32px;
+  font-size: clamp(24px, 4vw, 32px);
   font-weight: 700;
   color: var(--ecrist-text-primary);
-  margin-bottom: 40px;
+  margin-bottom: clamp(30px, 6vh, 40px);
 }
 
 .ecrist-products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 35vw, 280px), 1fr));
+  gap: clamp(20px, 4vw, 30px);
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -553,42 +553,52 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .ecrist-container {
-    margin: 10px;
-    border-radius: 15px;
-  }
-  
-  .ecrist-header {
-    padding: 15px 20px;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
+@media (max-width: 480px) {
   .ecrist-nav-menu {
     order: 3;
     width: 100%;
     justify-content: center;
     margin-top: 15px;
-    gap: 25px;
+    gap: 15px;
+    flex-wrap: wrap;
   }
   
-  .ecrist-hero {
-    height: 350px;
+  .ecrist-nav-link {
+    font-size: 14px;
   }
   
-  .ecrist-hero-title {
-    font-size: 36px;
+  .ecrist-search-form {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
   }
   
-  .ecrist-search-container {
-    padding: 40px 20px;
+  .ecrist-form-group {
+    width: 100%;
+  }
+  
+  .ecrist-search-button {
+    width: 100%;
+  }
+
+  .ecrist-products-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ecrist-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .ecrist-nav-menu {
+    gap: 20px;
   }
   
   .ecrist-search-form {
     flex-wrap: wrap;
     gap: 15px;
-    padding: 20px;
   }
   
   .ecrist-form-group {
@@ -601,16 +611,17 @@
     order: 5;
   }
 
-  .ecrist-products-section {
-    padding: 40px 20px;
-  }
-
   .ecrist-products-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
+}
 
-  .ecrist-page-content {
-    padding: 40px 20px;
+@media (min-width: 1400px) {
+  .ecrist-container {
+    max-width: 1400px;
+  }
+  
+  .ecrist-products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   }
 }
