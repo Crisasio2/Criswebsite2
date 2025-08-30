@@ -35,7 +35,7 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
   };
 
   return (
-    <div className="ecrist-search-container">
+    <div className="ecrist-search-container bg-[#3eff0021]">
       <form className="ecrist-search-form" onSubmit={handleSubmit}>
         <div className="ecrist-form-group">
           <label className="ecrist-form-label">Qué buscas</label>
