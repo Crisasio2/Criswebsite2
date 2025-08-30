@@ -1,5 +1,4 @@
 import Hero from '@/components/Hero';
-import SearchForm from '@/components/SearchForm';
 import { useMutation } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
 import type { SearchFilters } from '@shared/schema';
@@ -18,8 +17,7 @@ export default function Home() {
 
   return (
     <div>
-      <Hero />
-      <SearchForm onSearch={handleSearch} />
+      <Hero onSearch={handleSearch} />
     </div>
   );
 }
