@@ -31,7 +31,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
       onClick={handleOverlayClick}
       data-testid="modal-cart"
     >
-      <div className="modern-blur-modal rounded-2xl p-8 max-w-lg w-full max-h-[70vh] overflow-y-auto mx-4 animate-slideUp">
+      <div className="cart-modal-content rounded-2xl p-8 max-w-lg w-full max-h-[70vh] overflow-y-auto mx-4">
         <div className="flex justify-between items-center mb-5 border-b border-gray-100 pb-4">
           <h3 className="text-2xl font-bold modern-blur-text" data-testid="text-cart-title">
             Tu Carrito
