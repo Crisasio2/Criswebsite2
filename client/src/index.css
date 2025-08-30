@@ -141,9 +141,9 @@
 /* Header */
 .ecrist-header {
   background: var(--ecrist-white);
-  padding: clamp(15px, 3vh, 20px) clamp(25px, 6vw, 45px);
-  display: flex;
-  justify-content: space-between;
+  padding: clamp(15px, 3vh, 20px) clamp(20px, 4vw, 30px);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   animation: slideDown 0.8s ease-out 0.2s both;
 }
@@ -185,8 +185,9 @@
 .ecrist-nav-menu {
   display: flex;
   list-style: none;
-  gap: 35px;
-  margin-right: clamp(35px, 6vw, 50px);
+  gap: clamp(25px, 4vw, 35px);
+  grid-column: 2;
+  justify-self: center;
 }
 
 .ecrist-nav-link {

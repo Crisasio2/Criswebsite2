@@ -54,7 +54,7 @@ export default function Header({ onCartToggle }: HeaderProps) {
         </Link>
       </nav>
       
-      <div style={{ display: 'flex', alignItems: 'center', marginRight: 'clamp(20px, 4vw, 30px)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 'clamp(8px, 2vw, 10px)' }}>
         <button 
           className="ecrist-cart-btn" 
           onClick={onCartToggle}
