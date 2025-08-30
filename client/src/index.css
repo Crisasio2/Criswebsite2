@@ -226,13 +226,13 @@
 .ecrist-sign-up-btn {
   background: var(--ecrist-primary);
   color: white;
-  padding: 8px 20px;
+  padding: clamp(6px, 1.5vh, 8px) clamp(16px, 3vw, 20px);
   border: none;
-  border-radius: 20px;
+  border-radius: clamp(15px, 3vw, 20px);
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
-  font-size: 14px;
+  font-size: clamp(12px, 2.5vw, 14px);
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px hsla(82, 38%, 35%, 0.3);
 }
@@ -246,15 +246,15 @@
 .ecrist-cart-btn {
   background: var(--ecrist-secondary);
   color: white;
-  padding: 8px 16px;
+  padding: clamp(6px, 1.5vh, 8px) clamp(16px, 3vw, 20px);
   border: none;
-  border-radius: 20px;
+  border-radius: clamp(15px, 3vw, 20px);
   font-weight: 500;
   cursor: pointer;
-  font-size: 14px;
+  font-size: clamp(12px, 2.5vw, 14px);
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px hsla(140, 31%, 72%, 0.3);
-  margin-right: 10px;
+  margin-right: clamp(8px, 2vw, 10px);
   position: relative;
 }
 
