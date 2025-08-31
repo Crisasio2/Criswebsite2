@@ -630,7 +630,7 @@
   overflow: hidden;
   z-index: 1000;
   will-change: transform, opacity;
-  animation: cartModalOpen 0.3s ease-out both;
+  animation: cartModalOpen 0.15s ease-out both;
   contain: layout style;
 }
 
