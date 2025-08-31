@@ -109,7 +109,7 @@
   
   /* Aplicar padding-top solo cuando no estemos en la página principal */
   body:not(.main-page) {
-    padding-top: 158px;
+    padding-top: 120px;
   }
   
   /* En páginas de submenu, hacer que el fondo sea uniforme */
@@ -138,7 +138,7 @@
 .ecrist-top-bar {
   background: linear-gradient(135deg, var(--ecrist-primary), var(--ecrist-primary-dark));
   color: white;
-  padding: 12px 0;
+  padding: 8px 0;
   font-size: 14px;
   position: fixed;
   top: 0;
@@ -147,17 +147,15 @@
   width: 100%;
   z-index: 1001;
   margin: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .ecrist-top-bar-content {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 24px;
-  height: 100%;
+  padding: 0 20px;
 }
 
 .ecrist-delivery-info {
@@ -192,38 +190,34 @@
 
 .ecrist-enhanced-header {
   background: white !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: fixed;
-  top: 48px;
+  top: 32px;
   left: 0;
   right: 0;
   width: 100%;
   z-index: 1000;
   padding: 0;
   margin: 0;
-  border-bottom: 1px solid #e5e7eb;
 }
 
 .ecrist-header-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  padding: 0 24px;
-  height: 90px;
-  gap: 24px;
+  padding: 15px 20px;
+  gap: 20px;
 }
 
 .ecrist-enhanced-logo {
-  flex-shrink: 0;
-  color: var(--ecrist-primary) !important;
-  text-decoration: none;
-  font-size: 26px;
-  font-weight: 800;
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-width: 180px;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--ecrist-primary);
+  font-weight: bold;
+  font-size: 20px;
   transition: all 0.3s ease;
 }
 
@@ -241,17 +235,14 @@
   background: var(--ecrist-primary);
   color: white;
   border: none;
-  border-radius: 10px;
-  padding: 14px 24px;
+  padding: 12px 20px;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 15px;
+  font-size: 14px;
   transition: all 0.3s ease;
-  white-space: nowrap;
-  min-width: 140px;
 }
 
 .ecrist-categories-btn:hover {
@@ -260,8 +251,8 @@
 
 .ecrist-search-section {
   flex: 1;
-  max-width: 500px;
-  margin: 0 16px;
+  max-width: 600px;
+  margin: 0 20px;
 }
 
 .ecrist-search-input-container {
@@ -309,8 +300,8 @@
 .ecrist-user-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
-  flex-shrink: 0;
+  gap: 15px;
+  font-size: 14px;
 }
 
 .ecrist-user-info {
