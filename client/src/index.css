@@ -34,6 +34,8 @@
   --ecrist-text-secondary: hsl(0, 0%, 40%);
   --ecrist-brown: hsl(30, 45%, 35%);
   --ecrist-gradient: linear-gradient(135deg, hsl(82, 38%, 35%) 0%, hsl(60, 50%, 40%) 30%, hsl(30, 45%, 35%) 100%);
+  --ecrist-gold-gradient: linear-gradient(135deg, hsl(45, 100%, 50%) 0%, hsl(38, 100%, 60%) 50%, hsl(45, 100%, 70%) 100%);
+  --ecrist-shine-gradient: linear-gradient(90deg, transparent 0%, hsla(45, 100%, 80%, 0.8) 50%, transparent 100%);
   --ecrist-white: hsl(0, 0%, 100%);
   --ecrist-shadow: hsla(0, 0%, 0%, 0.1);
   
@@ -204,14 +206,16 @@
   align-items: center;
   gap: clamp(8px, 1.5vw, 12px);
   font-size: clamp(16px, 2.5vw, 18px);
-  font-weight: 700;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
   background: var(--ecrist-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 0.3s ease;
   cursor: pointer;
-  text-shadow: none;
+  text-shadow: 2px 2px 4px hsla(82, 64%, 20%, 0.3);
 }
 
 .ecrist-logo:hover {
@@ -252,12 +256,15 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: 600;
+  font-weight: 800;
   font-size: 15px;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
   position: relative;
   transition: all 0.3s ease;
   cursor: pointer;
   opacity: 0.8;
+  text-shadow: 2px 2px 4px hsla(82, 64%, 20%, 0.3);
 }
 
 .ecrist-nav-link.active {
@@ -432,10 +439,41 @@
 .ecrist-hero-subtitle {
   font-size: clamp(14px, 2.5vw, 16px);
   margin-bottom: clamp(30px, 8vh, 50px);
-  opacity: 0.95;
-  font-weight: 400;
-  text-shadow: 1px 1px 2px hsla(82, 64%, 20%, 0.3);
+  font-weight: 600;
+  background: var(--ecrist-gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 0 10px hsla(45, 100%, 60%, 0.8);
   animation: slideUp 1s ease-out 0.9s both;
+}
+
+.ecrist-hero-subtitle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--ecrist-shine-gradient);
+  animation: shine 3s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
 }
 
 /* Search Form Container */
