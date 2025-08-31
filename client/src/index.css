@@ -539,7 +539,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: slideUp 1s ease-out 0.7s both, goldSweep 4s ease-in-out 1.5s infinite;
+  animation: slideUp 1s ease-out 0.7s both, goldSweep 4s ease-in-out 1.5s forwards;
   will-change: background-position, transform;
   text-shadow: 2px 2px 4px hsla(82, 64%, 20%, 0.3);
 }
