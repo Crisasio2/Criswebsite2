@@ -199,6 +199,15 @@
   z-index: 1000;
   padding: 0;
   margin: 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.ecrist-enhanced-header.header-visible {
+  transform: translateY(0);
+}
+
+.ecrist-enhanced-header.header-hidden {
+  transform: translateY(-100%);
 }
 
 .ecrist-header-container {
@@ -206,7 +215,7 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 15px 20px;
   gap: 20px;
 }
@@ -220,6 +229,9 @@
   font-weight: bold;
   font-size: 20px;
   transition: all 0.3s ease;
+  flex: 0 0 auto;
+  position: absolute;
+  left: 20px;
 }
 
 .ecrist-enhanced-logo .ecrist-logo-icon {
@@ -230,6 +242,8 @@
 
 .ecrist-categories-dropdown {
   flex-shrink: 0;
+  position: absolute;
+  left: 180px;
 }
 
 .ecrist-categories-btn {
@@ -305,6 +319,9 @@
   align-items: center;
   gap: 15px;
   font-size: 14px;
+  flex: 0 0 auto;
+  position: absolute;
+  right: 20px;
 }
 
 .ecrist-user-info {
@@ -421,17 +438,30 @@
   .ecrist-header-container {
     flex-wrap: wrap;
     gap: 10px;
+    position: relative;
   }
   
-  .ecrist-search-section {
-    order: 3;
-    flex: 1 1 100%;
-    margin: 10px 0 0 0;
-    max-width: none;
+  .ecrist-enhanced-logo {
+    position: static;
+    order: 1;
+  }
+  
+  .ecrist-categories-dropdown {
+    position: static;
+    order: 2;
   }
   
   .ecrist-user-actions {
     gap: 10px;
+    position: static;
+    order: 3;
+  }
+  
+  .ecrist-search-section {
+    order: 4;
+    flex: 1 1 100%;
+    margin: 10px 0 0 0;
+    max-width: none;
   }
   
   .ecrist-purchases-link {

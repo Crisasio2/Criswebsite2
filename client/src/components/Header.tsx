@@ -33,9 +33,7 @@ export default function Header({ onCartToggle, onPageTransition, logoOverride }:
   }, [lastScrollY]);
 
   useEffect(() => {
-    // Solo aplicar la funcionalidad de scroll en páginas que no sean la principal
-    if (isMainPage) return;
-
+    // Aplicar la funcionalidad de scroll en todas las páginas
     // Throttle scroll events para mejorar rendimiento
     let ticking = false;
     const throttledScrollHandler = () => {
@@ -50,7 +48,7 @@ export default function Header({ onCartToggle, onPageTransition, logoOverride }:
 
     window.addEventListener('scroll', throttledScrollHandler, { passive: true });
     return () => window.removeEventListener('scroll', throttledScrollHandler);
-  }, [handleScroll, isMainPage]);
+  }, [handleScroll]);
 
   const isActive = useCallback((path: string) => {
     if (path === '/' && location === '/') return true;
@@ -185,7 +183,7 @@ export default function Header({ onCartToggle, onPageTransition, logoOverride }:
       </div>
       
       {/* Header principal mejorado */}
-      <header className={`${headerClassName} ecrist-enhanced-header`}>
+      <header className={`${headerClassName} ecrist-enhanced-header ${isHeaderVisible ? 'header-visible' : 'header-hidden'}`}>
         <div className="ecrist-header-container">
           {/* Logo */}
           <Link 
