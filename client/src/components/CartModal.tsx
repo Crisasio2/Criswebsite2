@@ -1,4 +1,5 @@
 import { useCartStore } from '@/lib/store';
+import { useEffect } from 'react';
 
 interface CartModalProps {
   isOpen: boolean;
@@ -7,6 +8,23 @@ interface CartModalProps {
 
 export default function CartModal({ isOpen, onClose }: CartModalProps) {
   const { items, removeItem, updateQuantity, clearCart, getTotalPrice } = useCartStore();
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
