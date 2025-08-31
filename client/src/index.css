@@ -942,8 +942,11 @@
 
   /* Adjust hero height for mobile */
   .ecrist-hero-extended {
-    height: clamp(350px, 60vh, 500px);
+    height: auto;
+    min-height: clamp(450px, 70vh, 600px);
     padding: clamp(20px, 4vh, 30px) clamp(15px, 4vw, 25px);
+    margin: clamp(10px, 2vw, 20px);
+    justify-content: space-evenly;
   }
 }
 
@@ -1011,17 +1014,31 @@
   }
 
   .ecrist-hero-extended {
-    height: clamp(300px, 50vh, 400px);
-    padding: 15px;
+    height: auto;
+    min-height: clamp(400px, 85vh, 550px);
+    padding: clamp(15px, 3vh, 25px);
+    margin: clamp(5px, 1vw, 15px);
+    justify-content: space-around;
   }
 
   .ecrist-hero-title {
-    font-size: clamp(24px, 5vw, 36px);
+    font-size: clamp(20px, 5vw, 32px);
+    margin-bottom: clamp(15px, 3vh, 25px);
+  }
+
+  .ecrist-hero-subtitle {
+    font-size: clamp(12px, 2.5vw, 14px);
+    margin-bottom: clamp(8px, 2vh, 12px);
+  }
+
+  .ecrist-search-overlay {
+    margin-top: clamp(15px, 3vh, 25px);
   }
 
   .ecrist-search-form-overlay {
-    padding: 15px;
-    margin: 0 10px;
+    padding: clamp(12px, 3vw, 18px);
+    margin: 0 clamp(5px, 2vw, 10px);
+    gap: 12px;
   }
 }
 
