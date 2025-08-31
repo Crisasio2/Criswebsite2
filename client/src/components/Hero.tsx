@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useLocation } from 'wouter';
 import { useSearchStore } from '@/lib/store';
 // Using CSS background instead of importing image to avoid build issues
@@ -33,12 +33,12 @@ export default function Hero({ onSearch }: HeroProps) {
     }
   };
 
-  const handleInputChange = (field: keyof SearchFilters) => (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((field: keyof SearchFilters) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilters(prev => ({
       ...prev,
       [field]: e.target.value
     }));
-  };
+  }, []);
 
   return (
     <section 

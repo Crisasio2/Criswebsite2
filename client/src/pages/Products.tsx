@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchStore } from '@/lib/store';
 import ProductCard from '@/components/ProductCard';
 import type { Product } from '@shared/schema';
-import { apiRequest } from '@/lib/queryClient';
 
 export default function Products() {
   const { currentSearch, setSearch } = useSearchStore();
@@ -40,7 +39,7 @@ export default function Products() {
     }
   }, [currentSearch]); // Only depend on currentSearch
   
-  const performSearch = async (query: string) => {
+  const performSearch = useCallback(async (query: string) => {
     if (!query.trim()) {
       setSearchResults({ products: allProducts, suggestions: [], totalFound: allProducts.length });
       return;
@@ -66,24 +65,24 @@ export default function Products() {
         totalFound: data.totalFound || 0
       });
     } catch (error) {
-      console.error('Error searching products:', error);
+      // Silent error handling for production
       setSearchResults({ products: [], suggestions: [], totalFound: 0 });
     } finally {
       setIsSearching(false);
     }
-  };
+  }, [allProducts]);
   
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchValue(value);
     setSearch(value);
-  };
+  }, [setSearch]);
   
-  const handleSuggestionClick = (suggestion: string) => {
+  const handleSuggestionClick = useCallback((suggestion: string) => {
     setSearchValue(suggestion);
     setSearch(suggestion);
     performSearch(suggestion);
-  };
+  }, [setSearch, performSearch]);
   
   const displayProducts = searchValue.trim() ? searchResults.products : allProducts;
 
