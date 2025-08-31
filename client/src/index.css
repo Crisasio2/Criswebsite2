@@ -120,7 +120,7 @@
 @keyframes cartModalFastOpen {
   0% {
     opacity: 0;
-    transform: translateY(15px) scale(0.99);
+    transform: translateY(8px) scale(0.995);
   }
   100% {
     opacity: 1;
@@ -517,7 +517,7 @@
   overflow: hidden;
   z-index: 1000;
   will-change: transform, opacity;
-  animation: cartModalFastOpen 0.2s ease-out both;
+  animation: cartModalFastOpen 0.08s ease-out both;
 }
 
 .cart-modal-backdrop::before {
