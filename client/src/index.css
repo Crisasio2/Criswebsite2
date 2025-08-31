@@ -376,12 +376,13 @@
 /* Extended Hero Section with Search Form */
 .ecrist-hero-extended {
   position: relative;
-  height: clamp(400px, 70vh, 600px);
+  min-height: clamp(400px, 70vh, 600px);
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   padding: clamp(30px, 6vh, 50px) clamp(20px, 5vw, 40px);
   margin: clamp(20px, 4vw, 30px);
   border-radius: 15px;
@@ -892,6 +893,34 @@
 
 /* Critical: Any width below 1024px - Force responsive layout with smaller proportions */
 @media (max-width: 1024px) {
+  .ecrist-hero-extended {
+    min-height: auto !important;
+    height: auto !important;
+    padding: clamp(15px, 3vh, 25px) clamp(10px, 3vw, 20px) !important;
+    justify-content: flex-start !important;
+    gap: clamp(15px, 3vh, 25px) !important;
+  }
+
+  .ecrist-hero-content {
+    margin-bottom: 0 !important;
+    padding: clamp(10px, 2vh, 15px) !important;
+  }
+
+  .ecrist-hero-title {
+    font-size: clamp(20px, 5vw, 32px) !important;
+    margin-bottom: clamp(8px, 2vh, 15px) !important;
+  }
+
+  .ecrist-hero-subtitle {
+    font-size: clamp(12px, 2.5vw, 16px) !important;
+    margin-bottom: clamp(5px, 1vh, 10px) !important;
+  }
+
+  .ecrist-search-overlay {
+    margin-top: 0 !important;
+    width: 100% !important;
+  }
+
   .ecrist-search-form,
   .ecrist-search-form-overlay {
     flex-direction: column !important;
@@ -1070,12 +1099,14 @@
   }
 
   .ecrist-hero-extended {
-    height: 100vh;
-    max-height: none;
-    padding: clamp(10px, 2vh, 20px);
-    margin: clamp(5px, 1vw, 10px);
-    justify-content: center;
-    gap: clamp(8px, 1.5vh, 15px);
+    min-height: 100vh !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: clamp(10px, 2vh, 15px) !important;
+    margin: clamp(2px, 0.5vw, 5px) !important;
+    justify-content: flex-start !important;
+    gap: clamp(5px, 1vh, 10px) !important;
+    overflow: visible !important;
   }
 
   .ecrist-hero-title {
