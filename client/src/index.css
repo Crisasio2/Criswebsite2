@@ -109,7 +109,7 @@
   
   /* Aplicar padding-top solo cuando no estemos en la página principal */
   body:not(.main-page) {
-    padding-top: 140px;
+    padding-top: clamp(120px, 12vh, 160px);
   }
   
   /* En páginas de submenu, hacer que el fondo sea uniforme */
@@ -138,8 +138,8 @@
 .ecrist-top-bar {
   background: linear-gradient(135deg, var(--ecrist-primary), var(--ecrist-primary-dark));
   color: white;
-  padding: 8px 0;
-  font-size: 14px;
+  padding: clamp(6px, 1vh, 12px) 0;
+  font-size: clamp(12px, 1.8vw, 16px);
   position: fixed;
   top: 0;
   left: 0;
@@ -147,18 +147,18 @@
   width: 100vw;
   z-index: 1002;
   margin: 0;
-  height: 32px;
+  height: clamp(28px, 4vh, 40px);
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .ecrist-top-bar-content {
-  max-width: 1200px;
+  max-width: clamp(800px, 90vw, 1400px);
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 clamp(15px, 3vw, 30px);
 }
 
 .ecrist-delivery-info {
@@ -193,9 +193,9 @@
 
 .ecrist-enhanced-header {
   background: white !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 clamp(2px, 0.5vh, 6px) clamp(8px, 2vh, 16px) rgba(0, 0, 0, 0.1);
   position: fixed;
-  top: 32px;
+  top: clamp(28px, 4vh, 40px);
   left: 0;
   right: 0;
   width: 100%;
@@ -212,33 +212,33 @@
 }
 
 .ecrist-header-container {
-  max-width: 1200px;
+  max-width: clamp(800px, 90vw, 1400px);
   margin: 0 auto;
-  padding: 20px 40px;
+  padding: clamp(15px, 2.5vh, 25px) clamp(20px, 4vw, 50px);
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-  gap: 20px;
-  height: 80px;
+  gap: clamp(15px, 3vw, 30px);
+  height: clamp(70px, 8vh, 90px);
   box-sizing: border-box;
 }
 
 .ecrist-enhanced-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: clamp(8px, 1.5vw, 15px);
   text-decoration: none;
   color: var(--ecrist-primary);
   font-weight: bold;
-  font-size: 20px;
+  font-size: clamp(16px, 2.5vw, 24px);
   transition: all 0.3s ease;
   justify-self: start;
 }
 
 .ecrist-enhanced-logo .ecrist-logo-icon {
-  width: 36px;
-  height: 36px;
-  font-size: 16px;
+  width: clamp(30px, 4vw, 45px);
+  height: clamp(30px, 4vw, 45px);
+  font-size: clamp(14px, 2vw, 20px);
 }
 
 .ecrist-enhanced-logo .ecrist-logo-text {
@@ -309,13 +309,13 @@
 
 .ecrist-main-search-input {
   width: 100%;
-  padding: 14px 55px 14px 20px;
-  border: 2px solid var(--ecrist-primary-light);
-  border-radius: 30px;
-  font-size: 15px;
+  padding: clamp(12px, 2vh, 18px) clamp(45px, 8vw, 65px) clamp(12px, 2vh, 18px) clamp(16px, 3vw, 24px);
+  border: clamp(1px, 0.2vw, 3px) solid var(--ecrist-primary-light);
+  border-radius: clamp(20px, 4vw, 35px);
+  font-size: clamp(13px, 2vw, 17px);
   outline: none;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 clamp(2px, 0.5vh, 4px) clamp(8px, 2vh, 12px) rgba(0,0,0,0.05);
 }
 
 .ecrist-main-search-input:focus {
@@ -324,22 +324,22 @@
 
 .ecrist-search-btn {
   position: absolute;
-  right: 6px;
+  right: clamp(4px, 1vw, 8px);
   top: 50%;
   transform: translateY(-50%);
   background: var(--ecrist-primary);
   color: white;
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: clamp(35px, 5vw, 50px);
+  height: clamp(35px, 5vw, 50px);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: clamp(16px, 2.5vw, 22px);
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 clamp(2px, 0.5vh, 4px) clamp(6px, 1.5vh, 10px) rgba(0,0,0,0.1);
 }
 
 .ecrist-search-btn:hover {
@@ -349,8 +349,8 @@
 .ecrist-user-actions {
   display: flex;
   align-items: center;
-  gap: 15px;
-  font-size: 14px;
+  gap: clamp(10px, 2vw, 20px);
+  font-size: clamp(12px, 1.8vw, 16px);
   justify-self: end;
 }
 
@@ -464,19 +464,71 @@
 }
 
 /* Responsive Design for Enhanced Header */
+
+/* Extra Large Screens */
+@media (min-width: 1440px) {
+  .ecrist-header-container {
+    max-width: 1600px;
+    padding: 30px 60px;
+    height: 100px;
+  }
+  
+  .ecrist-enhanced-logo {
+    font-size: 28px;
+  }
+  
+  .ecrist-enhanced-logo .ecrist-logo-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+  
+  .ecrist-user-actions {
+    font-size: 18px;
+    gap: 25px;
+  }
+  
+  .ecrist-main-search-input {
+    font-size: 18px;
+    padding: 20px 70px 20px 28px;
+  }
+  
+  .ecrist-search-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 26px;
+  }
+}
+
+/* Medium to Large Tablets */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .ecrist-header-container {
+    padding: clamp(18px, 2.2vh, 22px) clamp(25px, 3.5vw, 35px);
+    gap: clamp(18px, 2.5vw, 25px);
+  }
+  
+  .ecrist-enhanced-logo {
+    font-size: clamp(18px, 2.2vw, 22px);
+  }
+  
+  .ecrist-user-actions {
+    font-size: clamp(13px, 1.6vw, 15px);
+    gap: clamp(12px, 1.8vw, 18px);
+  }
+}
 @media (max-width: 768px) {
   .ecrist-header-container {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     height: auto;
-    padding: 20px;
-    gap: 20px;
+    padding: clamp(15px, 3vh, 25px) clamp(15px, 4vw, 25px);
+    gap: clamp(15px, 3vh, 25px);
     text-align: center;
   }
   
   .ecrist-enhanced-logo {
     justify-self: center;
-    font-size: 18px;
+    font-size: clamp(14px, 3.5vw, 20px);
   }
   
   .ecrist-search-section {
@@ -487,8 +539,8 @@
   
   .ecrist-user-actions {
     justify-self: center;
-    gap: 10px;
-    font-size: 13px;
+    gap: clamp(8px, 2vw, 15px);
+    font-size: clamp(11px, 2.5vw, 14px);
   }
   
   .ecrist-purchases-link {
@@ -497,32 +549,61 @@
   
   .ecrist-secondary-nav {
     flex-wrap: wrap;
-    gap: 15px;
+    gap: clamp(10px, 2.5vw, 20px);
     justify-content: center;
+    padding: clamp(8px, 2vh, 15px) clamp(15px, 4vw, 25px);
   }
 }
 
 @media (max-width: 480px) {
+  .ecrist-top-bar {
+    height: clamp(24px, 6vw, 35px);
+    font-size: clamp(10px, 3vw, 14px);
+  }
+  
   .ecrist-top-bar-content {
     flex-direction: column;
-    gap: 5px;
+    gap: clamp(3px, 1vh, 8px);
     text-align: center;
+    padding: clamp(2px, 1vh, 5px) clamp(10px, 3vw, 20px);
   }
   
   .ecrist-user-menu {
-    gap: 10px;
+    gap: clamp(6px, 2vw, 12px);
+  }
+  
+  .ecrist-enhanced-header {
+    top: clamp(24px, 6vw, 35px);
   }
   
   .ecrist-enhanced-logo {
-    font-size: 16px;
+    font-size: clamp(12px, 4vw, 18px);
+  }
+  
+  .ecrist-enhanced-logo .ecrist-logo-icon {
+    width: clamp(24px, 6vw, 35px);
+    height: clamp(24px, 6vw, 35px);
+    font-size: clamp(10px, 3vw, 16px);
   }
   
   .ecrist-user-actions {
-    font-size: 12px;
+    font-size: clamp(10px, 3vw, 13px);
+    gap: clamp(6px, 2vw, 12px);
   }
   
   .ecrist-search-input-container {
     max-width: 100%;
+  }
+  
+  .ecrist-main-search-input {
+    padding: clamp(10px, 3vw, 15px) clamp(35px, 10vw, 50px) clamp(10px, 3vw, 15px) clamp(12px, 4vw, 18px);
+    font-size: clamp(11px, 3.5vw, 15px);
+  }
+  
+  .ecrist-search-btn {
+    width: clamp(28px, 8vw, 40px);
+    height: clamp(28px, 8vw, 40px);
+    font-size: clamp(12px, 4vw, 18px);
   }
 }
 
