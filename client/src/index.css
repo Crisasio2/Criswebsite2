@@ -457,7 +457,7 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
-  animation: slideUp 1s ease-out 0.9s both, goldShine 4s infinite ease-in-out;
+  animation: slideUp 1s ease-out 0.9s both, goldShine 8s infinite ease-in-out;
 }
 
 @keyframes goldShine {
