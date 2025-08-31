@@ -109,7 +109,7 @@
   
   /* Aplicar padding-top para todas las páginas para evitar que el header tape el contenido */
   body {
-    padding-top: clamp(120px, 12vh, 160px);
+    padding-top: clamp(180px, 18vh, 220px);
   }
   
   /* En páginas de submenu, hacer que el fondo sea uniforme */
@@ -119,7 +119,7 @@
     margin: 0;
     border-radius: 0;
     box-shadow: none;
-    min-height: calc(100vh - clamp(120px, 12vh, 160px));
+    min-height: calc(100vh - clamp(180px, 18vh, 220px));
     padding-top: 0;
     margin-top: 0;
   }
@@ -518,7 +518,7 @@
 }
 @media (max-width: 768px) {
   body {
-    padding-top: clamp(140px, 15vh, 180px);
+    padding-top: clamp(200px, 20vh, 240px);
   }
   
   .ecrist-header-container {
@@ -561,7 +561,7 @@
 
 @media (max-width: 480px) {
   body {
-    padding-top: clamp(160px, 18vh, 200px);
+    padding-top: clamp(220px, 25vh, 260px);
   }
   
   .ecrist-top-bar {
