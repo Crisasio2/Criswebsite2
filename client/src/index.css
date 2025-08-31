@@ -621,7 +621,9 @@
 
 /* Cart modal with instant blur, only animate position/opacity */
 .cart-modal-backdrop {
-  background: rgba(0, 0, 0, 0.8) !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
   border: 2px solid hsla(255, 255, 255, 0.6) !important;
   box-shadow: 
     0 30px 60px hsla(0, 0%, 0%, 0.35),
