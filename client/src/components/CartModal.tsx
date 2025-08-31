@@ -31,8 +31,9 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
       onClick={handleOverlayClick}
       data-testid="modal-cart"
     >
-      <div className="cart-modal-backdrop rounded-2xl max-w-lg w-full max-h-[70vh] mx-4 p-8 overflow-y-auto">
-        <div className="flex justify-between items-center mb-5 border-b border-gray-100 pb-4">
+      <div className="cart-modal-backdrop rounded-2xl max-w-lg w-full max-h-[80vh] mx-4 flex flex-col">
+        {/* Fixed Header */}
+        <div className="flex justify-between items-center p-6 pb-4 border-b border-gray-100 flex-shrink-0">
           <h3 className="text-2xl font-bold modern-blur-text" data-testid="text-cart-title">
             Tu Carrito
           </h3>
@@ -46,13 +47,15 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
         </div>
         
         {items.length === 0 ? (
-          <div className="text-center modern-blur-text-muted italic my-10" data-testid="text-empty-cart">
+          <div className="text-center modern-blur-text-muted italic my-10 px-6" data-testid="text-empty-cart">
             Tu carrito está vacío
           </div>
         ) : (
           <>
-            <div className="space-y-4">
-              {items.map((item) => (
+            {/* Scrollable Items List */}
+            <div className="flex-1 overflow-y-auto px-6 py-4" style={{ maxHeight: 'calc(80vh - 200px)' }}>
+              <div className="space-y-4">
+                {items.map((item) => (
                 <div 
                   key={item.id} 
                   className="flex justify-between items-center py-4 border-b border-gray-50"
@@ -102,10 +105,12 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                     </div>
                   </div>
                 </div>
-              ))}
+                ))}
+              </div>
             </div>
             
-            <div className="text-center mt-5 pt-5 border-t-2 border-gray-100">
+            {/* Fixed Footer */}
+            <div className="text-center p-6 pt-4 border-t-2 border-gray-100 flex-shrink-0">
               <div 
                 className="text-2xl font-bold mb-5 modern-blur-text"
                 data-testid="text-cart-total"
