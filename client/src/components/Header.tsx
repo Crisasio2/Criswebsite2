@@ -14,7 +14,21 @@ export default function Header({ onCartToggle }: HeaderProps) {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  const isActive = (path: string) => {
+    if (path === '/' && location === '/') return true;
+    if (path !== '/' && location.startsWith(path)) return true;
+    return false;
+  };
+
+  const isMainPage = location === '/';
+
   useEffect(() => {
+    // Solo aplicar la funcionalidad de ocultar/mostrar si NO está en la página principal
+    if (isMainPage) {
+      setIsHeaderVisible(true);
+      return;
+    }
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
@@ -31,15 +45,7 @@ export default function Header({ onCartToggle }: HeaderProps) {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
-
-  const isActive = (path: string) => {
-    if (path === '/' && location === '/') return true;
-    if (path !== '/' && location.startsWith(path)) return true;
-    return false;
-  };
-
-  const isMainPage = location === '/';
+  }, [lastScrollY, isMainPage]);
   const logoClass = isMainPage ? 'ecrist-logo ecrist-logo-main-page' : 'ecrist-logo';
 
   return (
