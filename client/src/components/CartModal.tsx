@@ -27,27 +27,32 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
 
   return (
     <div 
-      className="fixed inset-0 bg-black bg-opacity-50 z-[9999] flex items-center justify-center animate-fadeIn"
+      className="z-[9999] animate-fadeIn"
       onClick={handleOverlayClick}
       data-testid="modal-cart"
       style={{ 
-        padding: '20px',
         position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        top: '0',
+        left: '0',
+        right: '0',
+        bottom: '0',
+        width: '100vw',
+        height: '100vh',
+        background: 'rgba(0, 0, 0, 0.5)',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        padding: '20px',
+        zIndex: 9999
       }}
     >
       <div 
-        className="cart-modal-backdrop rounded-2xl max-w-lg w-full mx-auto flex flex-col" 
+        className="cart-modal-backdrop rounded-2xl flex flex-col" 
         style={{ 
+          width: '100%',
+          maxWidth: '32rem',
           maxHeight: 'calc(100vh - 40px)',
-          position: 'relative',
-          margin: 'auto'
+          position: 'relative'
         }}
       >
         {/* Fixed Header */}
