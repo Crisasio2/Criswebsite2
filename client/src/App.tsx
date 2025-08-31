@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useState, useEffect, useCallback, useMemo } from "react";
+import { useCartStore } from "@/lib/store";
 
 import Header from "@/components/Header";
 import CartModal from "@/components/CartModal";
@@ -15,16 +16,12 @@ import About from "@/pages/About";
 import NotFound from "@/pages/not-found";
 
 function Router() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { isCartOpen, toggleCart } = useCartStore();
   const [location, setLocation] = useLocation();
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [transitionStage, setTransitionStage] = useState<'idle' | 'fadeOut' | 'expand' | 'fadeIn'>('idle');
   const [targetPage, setTargetPage] = useState<string>('');
   const [logoOverride, setLogoOverride] = useState<string | null>(null);
-
-  const toggleCart = useCallback(() => {
-    setIsCartOpen(prev => !prev);
-  }, []);
 
   const handlePageTransition = useCallback(async (href: string) => {
     if (isTransitioning) return;
@@ -83,7 +80,11 @@ function Router() {
     [transitionStage]
   );
 
-  const closeCart = useCallback(() => setIsCartOpen(false), []);
+  const closeCart = useCallback(() => {
+    if (isCartOpen) {
+      toggleCart();
+    }
+  }, [isCartOpen, toggleCart]);
 
   return (
     <div className={containerClasses}>
