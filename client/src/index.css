@@ -176,13 +176,11 @@
 .ecrist-container {
   max-width: min(1200px, 95vw);
   width: 100%;
-  margin: 0 auto;
+  margin: clamp(10px, 2vh, 20px) auto;
   background: var(--ecrist-white);
   border-radius: clamp(15px, 2vw, 20px);
   overflow-x: hidden;
   box-shadow: 0 10px 40px var(--ecrist-shadow);
-  margin-top: clamp(10px, 2vh, 20px);
-  margin-bottom: clamp(10px, 2vh, 20px);
   animation: fadeInScale 1s ease-out;
   box-sizing: border-box;
 }
