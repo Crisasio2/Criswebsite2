@@ -523,6 +523,8 @@
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .ecrist-search-form-overlay::before {
@@ -687,6 +689,8 @@
   width: 100%;
   border: 1px solid hsla(0, 0%, 0%, 0.05);
   animation: slideUp 1.2s ease-out 1.1s both;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .ecrist-form-group {
@@ -754,6 +758,7 @@
   text-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.3);
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  flex-shrink: 0;
 }
 
 .ecrist-search-button:before {
@@ -885,8 +890,34 @@
   margin: 0 auto;
 }
 
+/* Critical: Any width below 1024px - Force responsive layout */
+@media (max-width: 1024px) {
+  .ecrist-search-form,
+  .ecrist-search-form-overlay {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 15px !important;
+    padding: 20px !important;
+  }
+
+  .ecrist-form-group {
+    width: 100% !important;
+    flex: none !important;
+    min-width: unset !important;
+    margin-bottom: 8px;
+  }
+
+  .ecrist-search-button {
+    width: 100% !important;
+    margin-top: 10px !important;
+    order: 999 !important;
+    flex-shrink: 0 !important;
+    min-width: unset !important;
+  }
+}
+
 /* Medium screen adjustments - prevent search button from disappearing */
-@media (max-width: 1200px) {
+@media (max-width: 1200px) and (min-width: 1025px) {
   .ecrist-search-form,
   .ecrist-search-form-overlay {
     flex-wrap: wrap;
@@ -904,26 +935,7 @@
   }
 }
 
-/* Small-medium screens - ensure search button stays visible */
-@media (max-width: 900px) {
-  .ecrist-search-form,
-  .ecrist-search-form-overlay {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 15px;
-  }
-
-  .ecrist-form-group {
-    width: 100%;
-    margin-bottom: 8px;
-  }
-
-  .ecrist-search-button {
-    width: 100%;
-    margin-top: 10px;
-    order: 999; /* Ensure button appears last */
-  }
-}
+/* This rule is now handled by the 1024px media query above */
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -957,23 +969,7 @@
     justify-self: center !important;
   }
 
-  /* Improved search form for mobile */
-  .ecrist-search-form,
-  .ecrist-search-form-overlay {
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-  }
-
-  .ecrist-form-group {
-    margin-bottom: 10px;
-  }
-
-  .ecrist-search-button {
-    width: 100%;
-    margin-top: 10px;
-    order: 999; /* Ensure button appears last */
-  }
+  /* Search form styles handled by 1024px media query */
 
   /* Better product grid for mobile */
   .ecrist-products-grid {
