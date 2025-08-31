@@ -496,7 +496,7 @@
   justify-content: center;
   align-items: center;
   z-index: 20;
-  margin-top: auto;
+  margin-top: clamp(25px, 4vh, 35px);
 }
 
 .ecrist-search-form-overlay {
