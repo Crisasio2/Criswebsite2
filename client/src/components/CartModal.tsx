@@ -58,7 +58,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                 {items.map((item) => (
                 <div 
                   key={item.id} 
-                  className="flex justify-between items-center py-4 border-b border-gray-50"
+                  className="flex items-center gap-4 py-4 border-b border-gray-50"
                   data-testid={`cart-item-${item.id}`}
                 >
                   <div className="flex-1">
@@ -103,6 +103,14 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                         🗑️
                       </button>
                     </div>
+                  </div>
+                  
+                  {/* Product Image */}
+                  <div 
+                    className="w-16 h-16 bg-cover bg-center rounded-xl flex-shrink-0 shadow-sm"
+                    style={{ backgroundImage: `url('${item.product.image}')` }}
+                    data-testid={`img-cart-item-${item.id}`}
+                  >
                   </div>
                 </div>
                 ))}
