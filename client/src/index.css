@@ -150,41 +150,42 @@
 
 /* Animaciones de transición de página */
 @keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from { 
+    opacity: 1; 
+    transform: translate3d(0, 0, 0);
+  }
+  to { 
+    opacity: 0; 
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { 
+    opacity: 0; 
+    transform: translate3d(0, 0, 0);
+  }
+  to { 
+    opacity: 1; 
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes expandWhite {
   0% {
-    transform: scale(1);
+    transform: scale3d(1, 1, 1);
     border-radius: clamp(15px, 2vw, 20px);
     box-shadow: 0 10px 40px var(--ecrist-shadow);
   }
   50% {
-    transform: scale(1.2);
+    transform: scale3d(1.2, 1.2, 1);
     border-radius: clamp(8px, 1vw, 10px);
     box-shadow: 0 5px 20px var(--ecrist-shadow);
   }
   100% {
-    transform: scale(1.5);
+    transform: scale3d(1.5, 1.5, 1);
     border-radius: 0;
     box-shadow: none;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 30px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -289,15 +290,17 @@
   margin-bottom: clamp(20px, 4vh, 30px);
 }
 
-/* Estilos para transiciones de página */
+/* Estilos para transiciones de página optimizados */
 .page-content {
   position: relative;
   z-index: 1;
+  will-change: opacity, transform;
 }
 
 .transitioning {
   position: relative;
   overflow: hidden;
+  will-change: transform, border-radius, box-shadow;
 }
 
 .transitioning.transition-fadeOut .page-content {
@@ -306,7 +309,6 @@
 }
 
 .transitioning.transition-expand {
-  /* Durante la expansión, animar la transformación del contenedor */
   animation: expandWhite 0.4s ease-out forwards;
   background: var(--ecrist-white);
   position: relative;
@@ -316,6 +318,7 @@
 .transitioning.transition-expand .page-content {
   opacity: 0;
   z-index: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 .transitioning.transition-fadeIn .page-content {
@@ -332,6 +335,8 @@
   background: var(--ecrist-white);
   z-index: 10;
   pointer-events: none;
+  will-change: opacity;
+  transform: translate3d(0, 0, 0);
 }
 
 .transition-overlay-fadeOut {

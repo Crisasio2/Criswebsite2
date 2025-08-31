@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'wouter';
 import { useCartStore } from '@/lib/store';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 interface HeaderProps {
   onCartToggle: () => void;
@@ -18,41 +18,61 @@ export default function Header({ onCartToggle, onPageTransition, logoOverride }:
   
   const isMainPage = location === '/';
 
+  const handleScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    
+    // Solo ocultar después de haber scrolleado 100px
+    if (currentScrollY < 100) {
+      setIsHeaderVisible(true);
+    } else {
+      // Si scrollea hacia abajo, ocultar; si scrollea hacia arriba, mostrar
+      setIsHeaderVisible(currentScrollY < lastScrollY);
+    }
+    
+    setLastScrollY(currentScrollY);
+  }, [lastScrollY]);
+
   useEffect(() => {
     // Solo aplicar la funcionalidad de scroll en páginas que no sean la principal
     if (isMainPage) return;
 
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // Solo ocultar después de haber scrolleado 100px
-      if (currentScrollY < 100) {
-        setIsHeaderVisible(true);
-      } else {
-        // Si scrollea hacia abajo, ocultar; si scrollea hacia arriba, mostrar
-        setIsHeaderVisible(currentScrollY < lastScrollY);
+    // Throttle scroll events para mejorar rendimiento
+    let ticking = false;
+    const throttledScrollHandler = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
-      
-      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, isMainPage]);
+    window.addEventListener('scroll', throttledScrollHandler, { passive: true });
+    return () => window.removeEventListener('scroll', throttledScrollHandler);
+  }, [handleScroll, isMainPage]);
 
-  const isActive = (path: string) => {
+  const isActive = useCallback((path: string) => {
     if (path === '/' && location === '/') return true;
     if (path !== '/' && location.startsWith(path)) return true;
     return false;
-  };
-  const logoClass = isMainPage ? 'ecrist-logo ecrist-logo-main-page' : 'ecrist-logo';
+  }, [location]);
+
+  const logoClass = useMemo(() => 
+    isMainPage ? 'ecrist-logo ecrist-logo-main-page' : 'ecrist-logo', 
+    [isMainPage]
+  );
+
+  const headerClassName = useMemo(() => {
+    const baseClass = 'ecrist-header bg-[#001cba9c]';
+    if (isMainPage) {
+      return `${baseClass} header-main-page`;
+    }
+    return `${baseClass} ${isHeaderVisible ? 'header-visible' : 'header-hidden'}`;
+  }, [isMainPage, isHeaderVisible]);
 
   return (
-    <header className={`ecrist-header bg-[#001cba9c] ${
-      isMainPage 
-        ? 'header-main-page' 
-        : (isHeaderVisible ? 'header-visible' : 'header-hidden')
-    }`}>
+    <header className={headerClassName}>
       <Link 
         href="/" 
         className={logoClass} 

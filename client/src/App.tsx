@@ -3,7 +3,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 
 import Header from "@/components/Header";
 import CartModal from "@/components/CartModal";
@@ -22,11 +22,11 @@ function Router() {
   const [targetPage, setTargetPage] = useState<string>('');
   const [logoOverride, setLogoOverride] = useState<string | null>(null);
 
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
-  };
+  const toggleCart = useCallback(() => {
+    setIsCartOpen(prev => !prev);
+  }, []);
 
-  const handlePageTransition = async (href: string) => {
+  const handlePageTransition = useCallback(async (href: string) => {
     if (isTransitioning) return;
     
     setIsTransitioning(true);
@@ -57,7 +57,7 @@ function Router() {
     setIsTransitioning(false);
     setTargetPage('');
     setLogoOverride(null);
-  };
+  }, [isTransitioning, setLocation]);
 
   // Agregar/quitar clase al body según la página
   useEffect(() => {
@@ -73,8 +73,20 @@ function Router() {
     };
   }, [location]);
 
+  const containerClasses = useMemo(() => 
+    `ecrist-container ${isTransitioning ? `transitioning transition-${transitionStage}` : ''}`, 
+    [isTransitioning, transitionStage]
+  );
+
+  const overlayClasses = useMemo(() => 
+    `transition-overlay transition-overlay-${transitionStage}`, 
+    [transitionStage]
+  );
+
+  const closeCart = useCallback(() => setIsCartOpen(false), []);
+
   return (
-    <div className={`ecrist-container ${isTransitioning ? `transitioning transition-${transitionStage}` : ''}`}>
+    <div className={containerClasses}>
       <Header onCartToggle={toggleCart} onPageTransition={handlePageTransition} logoOverride={logoOverride} />
       
       <div className="page-content">
@@ -89,10 +101,10 @@ function Router() {
       </div>
       
       {isTransitioning && (
-        <div className={`transition-overlay transition-overlay-${transitionStage}`}></div>
+        <div className={overlayClasses}></div>
       )}
       
-      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <CartModal isOpen={isCartOpen} onClose={closeCart} />
     </div>
   );
 }
