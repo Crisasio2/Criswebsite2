@@ -30,8 +30,9 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
       className="fixed inset-0 bg-black bg-opacity-50 z-[9999] flex items-center justify-center animate-fadeIn"
       onClick={handleOverlayClick}
       data-testid="modal-cart"
+      style={{ padding: '20px' }}
     >
-      <div className="cart-modal-backdrop rounded-2xl max-w-lg w-full max-h-[80vh] mx-4 flex flex-col">
+      <div className="cart-modal-backdrop rounded-2xl max-w-lg w-full mx-auto flex flex-col" style={{ maxHeight: 'calc(100vh - 40px)' }}>
         {/* Fixed Header */}
         <div className="flex justify-between items-center p-6 pb-4 border-b border-gray-100 flex-shrink-0">
           <h3 className="text-2xl font-bold modern-blur-text" data-testid="text-cart-title">
