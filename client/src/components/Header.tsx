@@ -20,7 +20,10 @@ export default function Header({ onCartToggle }: HeaderProps) {
     <header className="ecrist-header bg-[#001cba9c]">
       <Link href="/" className="ecrist-logo" data-testid="link-logo">
         <div className="ecrist-logo-icon">🌿</div>
-        E'Crist Commerce
+        <div className="ecrist-logo-text">
+          <span className="ecrist-logo-short">E'Crist Commerce</span>
+          <span className="ecrist-logo-full">Eco Crist Commerce</span>
+        </div>
       </Link>
       <nav className="ecrist-nav-menu">
         <Link 
