@@ -671,11 +671,13 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  box-sizing: border-box;
   animation: overlayFadeIn 0.2s ease-out both;
+  overflow-y: auto;
 }
 
 .cart-modal-backdrop {
-  background: rgba(0, 0, 0, 0.4) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(20px) saturate(150%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
   border: 2px solid hsla(255, 255, 255, 0.6) !important;
@@ -693,6 +695,8 @@
   width: 100%;
   max-width: 32rem;
   max-height: calc(100vh - 40px);
+  margin: auto;
+  box-sizing: border-box;
 }
 
 .cart-modal-backdrop::before {

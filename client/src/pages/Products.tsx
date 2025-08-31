@@ -22,12 +22,16 @@ export default function Products() {
   // Sync searchValue with currentSearch from store
   useEffect(() => {
     setSearchValue(currentSearch);
+  }, [currentSearch]);
+  
+  // Handle search when currentSearch changes
+  useEffect(() => {
     if (currentSearch.trim()) {
       performSearch(currentSearch);
     } else {
       setSearchResults({ products: allProducts, suggestions: [], totalFound: allProducts.length });
     }
-  }, [currentSearch, allProducts]);
+  }, [currentSearch, allProducts.length]); // Only depend on length, not the entire array
   
   const performSearch = async (query: string) => {
     if (!query.trim()) {
