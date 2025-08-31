@@ -117,6 +117,21 @@
   }
 }
 
+@keyframes cartModalOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+  }
+}
+
 @keyframes fadeInScale {
   from {
     opacity: 0;
@@ -476,7 +491,7 @@
   z-index: 1000;
 }
 
-/* Cart modal with same blur effect as search form */
+/* Cart modal with immediate blur and 0.5s open animation */
 .cart-modal-backdrop {
   background: rgba(0, 0, 0, 0.4) !important;
   backdrop-filter: blur(20px) saturate(150%) !important;
@@ -492,8 +507,8 @@
   z-index: 1000;
   opacity: 1;
   transform: translateY(0);
-  will-change: transform, opacity;
-  animation: directSlideUp 0.5s ease-out both;
+  will-change: transform, opacity, backdrop-filter;
+  animation: cartModalOpen 0.5s ease-out both;
 }
 
 .cart-modal-backdrop::before {
@@ -520,7 +535,42 @@
   z-index: 2;
 }
 
-/* All blur-specific text and input styles removed - using standard styles now */
+/* White text styles for cart modal */
+.modern-blur-text {
+  color: hsl(0, 0%, 98%) !important;
+  text-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.7) !important;
+  font-weight: 600 !important;
+}
+
+.modern-blur-text-muted {
+  color: hsl(0, 0%, 85%) !important;
+  text-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.6) !important;
+}
+
+.modern-blur-button {
+  background: linear-gradient(135deg, var(--ecrist-primary), var(--ecrist-primary-dark)) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 16px 24px !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.3) !important;
+  box-shadow: 
+    0 6px 20px hsla(82, 38%, 35%, 0.4),
+    0 2px 8px hsla(82, 38%, 35%, 0.3),
+    inset 0 1px 0 hsla(255, 255, 255, 0.2) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer;
+}
+
+.modern-blur-button:hover {
+  background: linear-gradient(135deg, var(--ecrist-primary-dark), hsl(82, 64%, 15%)) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 
+    0 10px 30px hsla(82, 38%, 35%, 0.5),
+    0 4px 15px hsla(82, 38%, 35%, 0.4),
+    inset 0 1px 0 hsla(255, 255, 255, 0.3) !important;
+}
 
 /* Fix for preventing gray screen issues */
 .ecrist-hero-extended,
