@@ -221,10 +221,7 @@
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.5px;
-  background: var(--ecrist-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--ecrist-primary);
   transition: transform 0.3s ease, filter 0.3s ease;
   cursor: pointer;
   animation: logoBounce 2s ease-in-out 1;
