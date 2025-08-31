@@ -198,13 +198,9 @@
   top: 32px;
   left: 0;
   right: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 1001;
-  padding: 0;
-  margin: 0;
   transition: transform 0.3s ease-in-out;
-  overflow: hidden;
-  contain: layout;
 }
 
 .ecrist-enhanced-header.header-visible {
@@ -216,18 +212,14 @@
 }
 
 .ecrist-header-container {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0;
-  background: white;
-  position: relative;
-  z-index: 1;
-  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 70px;
+  justify-content: space-between;
+  height: 70px;
+  box-sizing: border-box;
 }
 
 .ecrist-enhanced-logo {
@@ -239,10 +231,7 @@
   font-weight: bold;
   font-size: 18px;
   transition: all 0.3s ease;
-  position: absolute;
-  left: 40px;
-  top: 50%;
-  transform: translateY(-50%);
+  flex-shrink: 0;
 }
 
 .ecrist-enhanced-logo .ecrist-logo-icon {
@@ -276,9 +265,9 @@
 .ecrist-search-section {
   display: flex;
   justify-content: center;
-  align-items: center;
-  max-width: 450px;
-  width: 450px;
+  flex: 1;
+  max-width: 500px;
+  margin: 0 30px;
 }
 
 .ecrist-search-input-container {
@@ -329,10 +318,7 @@
   align-items: center;
   gap: 12px;
   font-size: 13px;
-  position: absolute;
-  right: 40px;
-  top: 50%;
-  transform: translateY(-50%);
+  flex-shrink: 0;
 }
 
 .ecrist-user-info {
@@ -448,35 +434,24 @@
 @media (max-width: 768px) {
   .ecrist-header-container {
     flex-direction: column;
-    padding: 15px 20px;
-    min-height: 90px;
+    height: auto;
+    padding: 20px;
+    gap: 15px;
   }
   
   .ecrist-enhanced-logo {
-    position: static;
-    transform: none;
-    order: 1;
     font-size: 16px;
-    margin-bottom: 10px;
   }
   
   .ecrist-search-section {
-    order: 2;
     max-width: none;
+    margin: 0;
     width: 100%;
-    margin-bottom: 10px;
   }
   
   .ecrist-user-actions {
-    position: static;
-    transform: none;
-    order: 3;
     gap: 8px;
     font-size: 12px;
-  }
-  
-  .ecrist-main-search-input {
-    min-width: auto;
   }
   
   .ecrist-purchases-link {
