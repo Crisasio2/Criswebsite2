@@ -7,6 +7,7 @@ import { useState } from "react";
 
 import Header from "@/components/Header";
 import CartModal from "@/components/CartModal";
+import ECristCommerce from "@/pages/ECristCommerce";
 import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import Sustainability from "@/pages/Sustainability";
@@ -25,7 +26,8 @@ function Router() {
       <Header onCartToggle={toggleCart} />
       
       <Switch>
-        <Route path="/" component={Home} />
+        <Route path="/" component={ECristCommerce} />
+        <Route path="/inicio" component={Home} />
         <Route path="/productos" component={Products} />
         <Route path="/sostenibilidad" component={Sustainability} />
         <Route path="/nosotros" component={About} />
