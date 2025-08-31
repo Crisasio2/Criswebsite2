@@ -914,19 +914,25 @@ body:not(.main-page) .ecrist-enhanced-header {
   gap: clamp(20px, 4vw, 40px);
   animation: slideDown 0.8s ease-out 0.2s both;
   will-change: transform;
+  position: static;
+  z-index: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Solo aplicar transforms y position fixed cuando es la página principal */
+body.main-page .ecrist-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  transition: transform 0.3s ease-in-out;
 }
 
-.ecrist-header.header-visible {
+body.main-page .ecrist-header.header-visible {
   transform: translateY(0);
 }
 
-.ecrist-header.header-hidden {
+body.main-page .ecrist-header.header-hidden {
   transform: translateY(-100%);
 }
 
@@ -934,6 +940,13 @@ body:not(.main-page) .ecrist-enhanced-header {
   position: static;
   transform: none;
   margin-bottom: clamp(20px, 4vh, 30px);
+}
+
+/* En páginas que no son la principal, mantener el header normal */
+body:not(.main-page) .ecrist-header {
+  transform: none !important;
+  position: static !important;
+  z-index: auto !important;
 }
 
 /* Estilos para transiciones de página optimizados */
