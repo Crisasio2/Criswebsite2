@@ -526,12 +526,22 @@
   line-height: 1.1;
   margin-bottom: clamp(25px, 4vh, 30px);
   letter-spacing: -0.5px;
-  background: var(--ecrist-gradient);
-  -webkit-background-clip: text;
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    var(--ecrist-text-primary) 0%,
+    var(--ecrist-text-primary) 40%,
+    hsl(45, 100%, 60%) 50%,
+    var(--ecrist-text-primary) 60%,
+    var(--ecrist-text-primary) 100%
+  );
+  background-size: 200% 100%;
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: slideUp 1s ease-out 0.7s both, goldSweep 4s ease-in-out 1.5s infinite;
+  will-change: background-position, transform;
   text-shadow: 2px 2px 4px hsla(82, 64%, 20%, 0.3);
-  animation: slideUp 1s ease-out 0.7s both;
 }
 
 .ecrist-hero-subtitle {
