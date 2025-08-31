@@ -919,27 +919,20 @@ body:not(.main-page) .ecrist-enhanced-header {
   transition: transform 0.3s ease-in-out;
 }
 
-/* Solo aplicar transforms y position fixed cuando es la página principal */
-body.main-page .ecrist-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-}
-
-body.main-page .ecrist-header.header-visible {
+/* Comportamiento original para la página principal */
+.ecrist-header.header-visible {
   transform: translateY(0);
 }
 
-body.main-page .ecrist-header.header-hidden {
+.ecrist-header.header-hidden {
   transform: translateY(-100%);
 }
 
 .ecrist-header.header-main-page {
-  position: static;
-  transform: none;
+  position: static !important;
+  transform: none !important;
   margin-bottom: clamp(20px, 4vh, 30px);
+  z-index: auto !important;
 }
 
 /* En páginas que no son la principal, mantener el header normal */
