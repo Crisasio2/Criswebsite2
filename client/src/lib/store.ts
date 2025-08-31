@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { Product, CartItemWithProduct } from '@shared/schema';
+import type { Product, CartItemWithProduct, SearchFilters } from '@shared/schema';
 
 interface CartStore {
   items: CartItemWithProduct[];
@@ -81,5 +81,41 @@ export const useCartStore = create<CartStore>((set, get) => ({
   getTotalPrice: () => {
     const { items } = get();
     return items.reduce((total, item) => total + (parseFloat(item.product.price) * item.quantity), 0);
+  },
+}));
+
+// Search Store for sharing search data between pages
+interface SearchStore {
+  currentSearch: string;
+  searchFilters: SearchFilters;
+  setSearch: (search: string) => void;
+  setSearchFilters: (filters: SearchFilters) => void;
+  clearSearch: () => void;
+}
+
+export const useSearchStore = create<SearchStore>((set) => ({
+  currentSearch: '',
+  searchFilters: {
+    product: '',
+    category: '',
+    location: '',
+  },
+  
+  setSearch: (search: string) => {
+    set({ currentSearch: search });
+  },
+  
+  setSearchFilters: (filters: SearchFilters) => {
+    set({ 
+      searchFilters: filters,
+      currentSearch: filters.product || ''
+    });
+  },
+  
+  clearSearch: () => {
+    set({ 
+      currentSearch: '',
+      searchFilters: { product: '', category: '', location: '' }
+    });
   },
 }));

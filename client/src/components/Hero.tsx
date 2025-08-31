@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLocation } from 'wouter';
+import { useSearchStore } from '@/lib/store';
 // Using CSS background instead of importing image to avoid build issues
 // import naturalezaImage from '@assets/Imagen naturaleza_1756588974717.jpg';
 import type { SearchFilters } from '@shared/schema';
@@ -11,6 +12,7 @@ interface HeroProps {
 export default function Hero({ onSearch }: HeroProps) {
   const [, setLocation] = useLocation();
   const [isSearching, setIsSearching] = useState(false);
+  const { setSearchFilters } = useSearchStore();
   const [filters, setFilters] = useState<SearchFilters>({
     product: '',
     category: '',
@@ -22,6 +24,8 @@ export default function Hero({ onSearch }: HeroProps) {
     setIsSearching(true);
     
     try {
+      // Save search to global store
+      setSearchFilters(filters);
       onSearch(filters);
       setLocation('/productos');
     } finally {
