@@ -677,15 +677,15 @@
 }
 
 .cart-modal-backdrop {
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(20px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
-  border: 2px solid hsla(255, 255, 255, 0.6) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(25px) saturate(180%) brightness(110%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) brightness(110%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
   box-shadow: 
-    0 30px 60px hsla(0, 0%, 0%, 0.35),
-    0 10px 30px hsla(82, 64%, 20%, 0.25),
-    inset 0 1px 0 hsla(255, 255, 255, 0.6),
-    inset 0 -1px 0 hsla(0, 0%, 0%, 0.1) !important;
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 10px 25px rgba(134, 175, 134, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
   position: relative;
   overflow: hidden;
   z-index: 10000;
