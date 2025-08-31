@@ -24,14 +24,21 @@ export default function Products() {
     setSearchValue(currentSearch);
   }, [currentSearch]);
   
+  // Initialize search results when products load
+  useEffect(() => {
+    if (allProducts.length > 0 && !currentSearch.trim()) {
+      setSearchResults({ products: allProducts, suggestions: [], totalFound: allProducts.length });
+    }
+  }, [allProducts.length]); // Only run when products are first loaded
+  
   // Handle search when currentSearch changes
   useEffect(() => {
     if (currentSearch.trim()) {
       performSearch(currentSearch);
-    } else {
+    } else if (allProducts.length > 0) {
       setSearchResults({ products: allProducts, suggestions: [], totalFound: allProducts.length });
     }
-  }, [currentSearch, allProducts.length]); // Only depend on length, not the entire array
+  }, [currentSearch]); // Only depend on currentSearch
   
   const performSearch = async (query: string) => {
     if (!query.trim()) {

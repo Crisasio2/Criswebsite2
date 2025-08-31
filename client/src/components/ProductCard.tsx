@@ -14,11 +14,9 @@ function ProductCard({ product }: ProductCardProps) {
     setIsAdding(true);
     addItem(product);
     
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       setIsAdding(false);
     }, 1000);
-    
-    return () => clearTimeout(timer);
   }, [product, addItem]);
 
   return (
