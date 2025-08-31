@@ -241,6 +241,37 @@
   font-size: 16px;
 }
 
+.ecrist-enhanced-logo .ecrist-logo-text {
+  position: relative;
+  overflow: hidden;
+  height: 1.2em;
+}
+
+.ecrist-logo-default,
+.ecrist-logo-hover {
+  transition: all 0.3s ease;
+  display: block;
+  white-space: nowrap;
+}
+
+.ecrist-logo-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.ecrist-enhanced-logo:hover .ecrist-logo-default {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.ecrist-enhanced-logo:hover .ecrist-logo-hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .ecrist-categories-dropdown {
   display: none;
 }
