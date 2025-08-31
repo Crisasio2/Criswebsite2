@@ -74,6 +74,12 @@
     animation: fadeIn 0.8s ease-out;
     min-height: 100vh;
     overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  html {
+    overflow-x: hidden;
+    max-width: 100vw;
   }
   
   /* Background blur removed per user request */
@@ -169,14 +175,16 @@
 /* Main Container */
 .ecrist-container {
   max-width: min(1200px, 95vw);
+  width: 100%;
   margin: 0 auto;
   background: var(--ecrist-white);
   border-radius: clamp(15px, 2vw, 20px);
-  overflow: hidden;
+  overflow-x: hidden;
   box-shadow: 0 10px 40px var(--ecrist-shadow);
   margin-top: clamp(10px, 2vh, 20px);
   margin-bottom: clamp(10px, 2vh, 20px);
   animation: fadeInScale 1s ease-out;
+  box-sizing: border-box;
 }
 
 /* Header */
@@ -421,11 +429,14 @@
 .ecrist-search-container {
   position: relative;
   width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: clamp(40px, 8vh, 60px) clamp(20px, 5vw, 40px);
   background: var(--ecrist-white);
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Removed blur apply directive */
@@ -455,12 +466,13 @@
     0 10px 30px hsla(82, 64%, 20%, 0.25),
     inset 0 1px 0 hsla(255, 255, 255, 0.6),
     inset 0 -1px 0 hsla(0, 0%, 0%, 0.1);
-  max-width: 900px;
+  max-width: min(900px, 90vw);
   width: 100%;
   border: 2px solid hsla(255, 255, 255, 0.6);
   animation: slideUp 1.2s ease-out 1.1s both;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .ecrist-search-form-overlay::before {
