@@ -52,8 +52,8 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
           </div>
         ) : (
           <>
-            {/* Scrollable Items List */}
-            <div className="flex-1 overflow-y-auto px-6 py-4" style={{ maxHeight: 'calc(80vh - 200px)' }}>
+            {/* Scrollable Items List - Invisible scrollbar */}
+            <div className="flex-1 overflow-y-auto px-6 py-4 cart-scroll-area" style={{ maxHeight: 'calc(80vh - 200px)' }}>
               <div className="space-y-4">
                 {items.map((item) => (
                 <div 
