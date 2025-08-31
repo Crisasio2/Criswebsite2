@@ -32,6 +32,8 @@
   --ecrist-background: hsl(60, 33%, 96%);
   --ecrist-text-primary: hsl(82, 64%, 20%);
   --ecrist-text-secondary: hsl(0, 0%, 40%);
+  --ecrist-brown: hsl(30, 45%, 35%);
+  --ecrist-gradient: linear-gradient(135deg, hsl(82, 38%, 35%) 0%, hsl(60, 50%, 40%) 30%, hsl(30, 45%, 35%) 100%);
   --ecrist-white: hsl(0, 0%, 100%);
   --ecrist-shadow: hsla(0, 0%, 0%, 0.1);
   
@@ -202,14 +204,19 @@
   align-items: center;
   gap: clamp(8px, 1.5vw, 12px);
   font-size: clamp(16px, 2.5vw, 18px);
-  font-weight: 600;
-  color: var(--ecrist-text-primary);
-  transition: transform 0.3s ease;
+  font-weight: 700;
+  background: var(--ecrist-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease;
   cursor: pointer;
+  text-shadow: none;
 }
 
 .ecrist-logo:hover {
   transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
 .ecrist-logo-icon {
@@ -241,16 +248,21 @@
 
 .ecrist-nav-link {
   text-decoration: none;
-  color: var(--ecrist-text-secondary);
-  font-weight: 500;
+  background: var(--ecrist-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
   font-size: 15px;
   position: relative;
   transition: all 0.3s ease;
   cursor: pointer;
+  opacity: 0.8;
 }
 
 .ecrist-nav-link.active {
-  color: var(--ecrist-text-primary);
+  opacity: 1;
+  filter: brightness(1.2);
 }
 
 .ecrist-nav-link::after {
@@ -265,8 +277,9 @@
 }
 
 .ecrist-nav-link:hover {
-  color: var(--ecrist-text-primary);
+  opacity: 1;
   transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
 .ecrist-nav-link:hover::after,
