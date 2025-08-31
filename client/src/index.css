@@ -885,6 +885,46 @@
   margin: 0 auto;
 }
 
+/* Medium screen adjustments - prevent search button from disappearing */
+@media (max-width: 1200px) {
+  .ecrist-search-form,
+  .ecrist-search-form-overlay {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .ecrist-form-group {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .ecrist-search-button {
+    flex-shrink: 0;
+    min-width: 120px;
+  }
+}
+
+/* Small-medium screens - ensure search button stays visible */
+@media (max-width: 900px) {
+  .ecrist-search-form,
+  .ecrist-search-form-overlay {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .ecrist-form-group {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .ecrist-search-button {
+    width: 100%;
+    margin-top: 10px;
+    order: 999; /* Ensure button appears last */
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .ecrist-header {
@@ -932,6 +972,7 @@
   .ecrist-search-button {
     width: 100%;
     margin-top: 10px;
+    order: 999; /* Ensure button appears last */
   }
 
   /* Better product grid for mobile */
