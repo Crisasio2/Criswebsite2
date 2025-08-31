@@ -332,13 +332,13 @@ body:not(.main-page) .ecrist-enhanced-header {
 
 .ecrist-main-search-input {
   width: 100%;
-  padding: clamp(1vh, 1.5vh, 2vh) clamp(4vw, 6vw, 8vw) clamp(1vh, 1.5vh, 2vh) clamp(2vw, 3vw, 4vw);
-  border: clamp(1px, 0.2vw, 2px) solid var(--ecrist-primary-light);
-  border-radius: clamp(8px, 2vw, 15px);
-  font-size: clamp(1.3vh, 1.6vw, 1.6vh);
+  padding: clamp(12px, 2vh, 18px) clamp(45px, 8vw, 65px) clamp(12px, 2vh, 18px) clamp(16px, 3vw, 24px);
+  border: clamp(1px, 0.2vw, 3px) solid var(--ecrist-primary-light);
+  border-radius: clamp(20px, 4vw, 35px);
+  font-size: clamp(13px, 2vw, 17px);
   outline: none;
   transition: all 0.3s ease;
-  box-shadow: 0 clamp(1px, 0.3vh, 2px) clamp(4px, 1vh, 8px) rgba(0,0,0,0.05);
+  box-shadow: 0 clamp(2px, 0.5vh, 4px) clamp(8px, 2vh, 12px) rgba(0,0,0,0.05);
 }
 
 .ecrist-main-search-input:focus {
@@ -347,20 +347,20 @@ body:not(.main-page) .ecrist-enhanced-header {
 
 .ecrist-search-btn {
   position: absolute;
-  right: clamp(3px, 0.8vw, 6px);
+  right: clamp(4px, 1vw, 8px);
   top: 50%;
   transform: translateY(-50%);
   background: var(--ecrist-primary);
   color: white;
   border: none;
   border-radius: 50%;
-  width: clamp(3vh, 4vw, 4vh);
-  height: clamp(3vh, 4vw, 4vh);
+  width: clamp(35px, 5vw, 50px);
+  height: clamp(35px, 5vw, 50px);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(1.5vh, 2vw, 2vh);
+  font-size: clamp(16px, 2.5vw, 22px);
   transition: all 0.3s ease;
   box-shadow: 0 clamp(2px, 0.5vh, 4px) clamp(6px, 1.5vh, 10px) rgba(0,0,0,0.1);
 }
@@ -1318,23 +1318,25 @@ body:not(.main-page) .ecrist-header {
   position: relative;
   animation: slideUp 1s ease-out 0.5s both;
   background: rgba(0, 0, 0, 0.5);
-  padding: clamp(2vh, 3vh, 4vh) clamp(3vw, 5vw, 7vw);
-  border-radius: clamp(8px, 1.5vw, 12px);
-  width: clamp(50vw, 70vw, 85vw);
-  max-width: 85vw;
-  max-height: 60vh;
+  padding: clamp(2vh, 4vh, 6vh) clamp(4vw, 6vw, 8vw);
+  border-radius: clamp(8px, 2vw, 15px);
+  width: clamp(40vw, 60vw, 80vw);
+  height: clamp(30vh, 50vh, 70vh);
+  max-width: 80vw;
+  max-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: scale(clamp(0.6, 1vw + 1vh, 1));
   /* backdrop-filter blur removed */
 }
 
 .ecrist-hero-title {
-  font-size: clamp(2.5vh, 4vw, 4vh);
+  font-size: clamp(28px, 6vw, 48px);
   font-weight: 800;
   line-height: 1.1;
-  margin-bottom: clamp(1vh, 2vh, 2.5vh);
+  margin-bottom: clamp(25px, 4vh, 30px);
   letter-spacing: -0.5px;
   position: relative;
   background: linear-gradient(
@@ -1355,8 +1357,8 @@ body:not(.main-page) .ecrist-header {
 }
 
 .ecrist-hero-subtitle {
-  font-size: clamp(1.4vh, 1.8vw, 1.8vh);
-  margin-bottom: clamp(1vh, 1.5vh, 2vh);
+  font-size: clamp(14px, 2.5vw, 16px);
+  margin-bottom: clamp(10px, 2vh, 15px);
   font-weight: 600;
   background: linear-gradient(
     90deg,
@@ -1410,17 +1412,17 @@ body:not(.main-page) .ecrist-header {
   justify-content: center;
   align-items: center;
   z-index: 20;
-  margin-top: clamp(1vh, 2vh, 3vh);
+  margin-top: clamp(25px, 4vh, 35px);
 }
 
 .ecrist-search-form-overlay {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border-radius: clamp(8px, 2vw, 15px);
-  padding: clamp(1.5vh, 2vh, 3vh);
+  border-radius: 20px;
+  padding: 30px;
   display: flex;
-  gap: clamp(1vw, 1.5vw, 2vw);
+  gap: 20px;
   align-items: end;
   box-shadow: 
     0 30px 60px hsla(0, 0%, 0%, 0.35), 
@@ -1428,7 +1430,7 @@ body:not(.main-page) .ecrist-header {
     inset 0 1px 0 hsla(255, 255, 255, 0.6),
     inset 0 -1px 0 hsla(0, 0%, 0%, 0.1);
   width: 100%;
-  max-width: 85%;
+  max-width: 100%;
   border: 2px solid hsla(255, 255, 255, 0.6);
   animation: slideUp 1.2s ease-out 1.1s both;
   position: relative;
