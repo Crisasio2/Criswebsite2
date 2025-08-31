@@ -159,14 +159,10 @@
   0% {
     opacity: 0;
     transform: translateY(20px) scale(0.98);
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
   }
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
-    backdrop-filter: blur(20px) saturate(150%);
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
   }
 }
 
@@ -634,7 +630,7 @@
   overflow: hidden;
   z-index: 1000;
   will-change: transform, opacity;
-  animation: cartModalFastOpen 0.08s ease-out both;
+  animation: cartModalOpen 0.3s ease-out both;
   contain: layout style;
 }
 
