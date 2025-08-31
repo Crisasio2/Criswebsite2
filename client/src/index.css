@@ -288,27 +288,21 @@
 /* Golden shine effect for main page logo */
 .ecrist-logo-main-page .ecrist-logo-text {
   position: relative;
-  overflow: hidden;
-  background: linear-gradient(90deg, var(--ecrist-text-primary) 0%, var(--ecrist-text-primary) 100%);
+  color: var(--ecrist-text-primary);
+  background: linear-gradient(
+    90deg,
+    var(--ecrist-text-primary) 0%,
+    var(--ecrist-text-primary) 40%,
+    hsl(45, 100%, 60%) 50%,
+    var(--ecrist-text-primary) 60%,
+    var(--ecrist-text-primary) 100%
+  );
+  background-size: 200% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-size: 200% 100%;
-}
-
-.ecrist-logo-main-page .ecrist-logo-text::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--ecrist-gold-gradient);
-  animation: shimmerText 3s ease-in-out infinite;
-  will-change: transform;
-  z-index: 1;
-  pointer-events: none;
-  mix-blend-mode: lighten;
+  animation: goldSweep 3s ease-in-out infinite;
+  will-change: background-position;
 }
 
 /* No hover effect when in main page */
@@ -653,18 +647,15 @@
   100% { left: 100%; }
 }
 
-@keyframes shimmerText {
+@keyframes goldSweep {
   0% { 
-    left: -100%; 
-    background: linear-gradient(90deg, transparent 0%, var(--ecrist-gold-gradient) 50%, transparent 100%);
+    background-position: -200% 0%;
   }
   50% { 
-    left: 0%; 
-    background: var(--ecrist-gold-gradient);
+    background-position: 0% 0%;
   }
   100% { 
-    left: 100%; 
-    background: linear-gradient(90deg, transparent 0%, var(--ecrist-gold-gradient) 50%, transparent 100%);
+    background-position: 200% 0%;
   }
 }
 
