@@ -55,7 +55,7 @@ export default function Header({ onCartToggle }: HeaderProps) {
           Nosotros
         </Link>
       </nav>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 'clamp(8px, 2vw, 10px)' }}>
+      <div className="ecrist-header-buttons">
         <button 
           className="ecrist-cart-btn" 
           onClick={onCartToggle}
