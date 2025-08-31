@@ -304,12 +304,12 @@
 }
 
 .transitioning.transition-fadeOut .page-content {
-  animation: fadeOut 0.3s ease-out forwards;
+  animation: fadeOut 0.2s ease-out forwards;
   z-index: 1;
 }
 
 .transitioning.transition-expand {
-  animation: expandWhite 0.4s ease-out forwards;
+  animation: expandWhite 0.3s ease-out forwards;
   background: var(--ecrist-white);
   position: relative;
   z-index: 1;
@@ -322,7 +322,7 @@
 }
 
 .transitioning.transition-fadeIn .page-content {
-  animation: fadeIn 0.3s ease-out forwards;
+  animation: fadeIn 0.2s ease-out forwards;
   z-index: 1;
 }
 
@@ -348,7 +348,7 @@
 }
 
 .transition-overlay-fadeIn {
-  animation: fadeOut 0.3s ease-out forwards;
+  animation: fadeOut 0.2s ease-out forwards;
 }
 
 .ecrist-logo {

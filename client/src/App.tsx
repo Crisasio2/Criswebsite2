@@ -39,18 +39,18 @@ function Router() {
     
     // Fase 1: Fade out del contenido actual
     setTransitionStage('fadeOut');
-    await new Promise(resolve => setTimeout(resolve, 300));
+    await new Promise(resolve => setTimeout(resolve, 200));
     
     // Fase 2: Expandir el fondo blanco
     setTransitionStage('expand');
-    await new Promise(resolve => setTimeout(resolve, 400));
+    await new Promise(resolve => setTimeout(resolve, 300));
     
     // Cambiar la página
     setLocation(href);
     
     // Fase 3: Fade in del nuevo contenido
     setTransitionStage('fadeIn');
-    await new Promise(resolve => setTimeout(resolve, 300));
+    await new Promise(resolve => setTimeout(resolve, 200));
     
     // Resetear estados
     setTransitionStage('idle');
