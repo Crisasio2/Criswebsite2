@@ -207,7 +207,7 @@
   background: var(--ecrist-white);
   padding: clamp(15px, 3vh, 20px) clamp(20px, 4vw, 30px);
   display: grid;
-  grid-template-columns: 250px auto 1fr;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   animation: slideDown 0.8s ease-out 0.2s both;
   will-change: transform;
@@ -226,7 +226,7 @@
   cursor: pointer;
   animation: logoBounce 2s ease-in-out 1;
   will-change: transform;
-  justify-self: start;
+  justify-self: center;
 }
 
 .ecrist-logo:hover {
