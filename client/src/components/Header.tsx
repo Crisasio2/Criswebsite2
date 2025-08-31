@@ -16,13 +16,22 @@ export default function Header({ onCartToggle }: HeaderProps) {
     return false;
   };
 
+  const isMainPage = location === '/';
+  const logoClass = isMainPage ? 'ecrist-logo ecrist-logo-main-page' : 'ecrist-logo';
+
   return (
     <header className="ecrist-header bg-[#001cba9c]">
-      <Link href="/" className="ecrist-logo" data-testid="link-logo">
+      <Link href="/" className={logoClass} data-testid="link-logo">
         <div className="ecrist-logo-icon">🌿</div>
         <div className="ecrist-logo-text">
-          <span className="ecrist-logo-short">E'Crist Commerce</span>
-          <span className="ecrist-logo-full">EcoCrist</span>
+          {isMainPage ? (
+            <span>EcoCrist</span>
+          ) : (
+            <>
+              <span className="ecrist-logo-short">E'Crist Commerce</span>
+              <span className="ecrist-logo-full">EcoCrist</span>
+            </>
+          )}
         </div>
       </Link>
       <nav className="ecrist-nav-menu">

@@ -285,6 +285,18 @@
   opacity: 1;
 }
 
+/* No hover effect when in main page */
+.ecrist-logo-main-page .ecrist-logo-short,
+.ecrist-logo-main-page .ecrist-logo-full {
+  transition: none;
+}
+
+.ecrist-logo-main-page:hover .ecrist-logo-short,
+.ecrist-logo-main-page:hover .ecrist-logo-full {
+  opacity: 1;
+  transform: none;
+}
+
 .ecrist-nav-menu {
   display: flex;
   list-style: none;
