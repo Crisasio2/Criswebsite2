@@ -205,7 +205,7 @@
 /* Header */
 .ecrist-header {
   background: var(--ecrist-white);
-  padding: clamp(15px, 3vh, 20px) clamp(20px, 4vw, 30px);
+  padding: clamp(15px, 3vh, 20px) clamp(20px, 4vw, 25px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -351,14 +351,14 @@
   background: var(--ecrist-primary);
   color: white;
   padding: clamp(6px, 1.5vh, 8px) clamp(8px, 1.5vw, 12px);
-  border: none;
+  border: 2px solid var(--ecrist-primary-dark);
   border-radius: clamp(15px, 3vw, 20px);
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   text-decoration: none;
   font-size: clamp(12px, 2.5vw, 14px);
   transition: transform 0.3s ease, filter 0.3s ease;
-  box-shadow: 0 4px 15px hsla(82, 38%, 35%, 0.3);
+  box-shadow: 0 4px 15px hsla(82, 38%, 35%, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.3);
   min-width: 75px;
   max-width: 120px;
   width: auto;
@@ -367,6 +367,7 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  margin-right: 8px;
 }
 
 .ecrist-sign-up-btn:hover {
