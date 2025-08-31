@@ -218,12 +218,18 @@ body.main-page .ecrist-enhanced-header {
   right: 0;
 }
 
-.ecrist-enhanced-header.header-visible {
+/* Solo aplicar transforms de visibilidad cuando el header es fijo (página principal) */
+body.main-page .ecrist-enhanced-header.header-visible {
   transform: translateY(0);
 }
 
-.ecrist-enhanced-header.header-hidden {
+body.main-page .ecrist-enhanced-header.header-hidden {
   transform: translateY(-100%);
+}
+
+/* En páginas que no son la principal, mantener el header siempre visible */
+body:not(.main-page) .ecrist-enhanced-header {
+  transform: translateY(0) !important;
 }
 
 .ecrist-header-container {

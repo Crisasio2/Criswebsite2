@@ -183,7 +183,7 @@ export default function Header({ onCartToggle, onPageTransition, logoOverride }:
       </div>
       
       {/* Header principal mejorado */}
-      <header className={`${headerClassName} ecrist-enhanced-header ${isHeaderVisible ? 'header-visible' : 'header-hidden'}`}>
+      <header className={`${headerClassName} ecrist-enhanced-header ${isMainPage ? (isHeaderVisible ? 'header-visible' : 'header-hidden') : ''}`}>
         <div className="ecrist-header-container">
           {/* Logo */}
           <Link 
