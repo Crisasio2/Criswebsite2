@@ -442,7 +442,7 @@
 
 .ecrist-hero-subtitle {
   font-size: clamp(14px, 2.5vw, 16px);
-  margin-bottom: clamp(30px, 8vh, 50px);
+  margin-bottom: clamp(10px, 2vh, 15px);
   font-weight: 600;
   background: linear-gradient(
     90deg,
