@@ -202,6 +202,7 @@ export default function Header({ onCartToggle, onPageTransition, logoOverride }:
             <div className="ecrist-logo-icon">🌿</div>
             <div className="ecrist-logo-text">
               <span className="ecrist-logo-short">E'Crist</span>
+              <span className="ecrist-logo-full">EcoCrist</span>
             </div>
           </Link>
           
