@@ -236,6 +236,7 @@
 .ecrist-header.header-main-page {
   position: static;
   transform: none;
+  margin-bottom: clamp(20px, 4vh, 30px);
 }
 
 .ecrist-logo {
