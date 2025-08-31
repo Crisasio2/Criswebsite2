@@ -27,34 +27,11 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
 
   return (
     <div 
-      className="z-[9999] animate-fadeIn"
+      className="cart-modal-overlay"
       onClick={handleOverlayClick}
       data-testid="modal-cart"
-      style={{ 
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        right: '0',
-        bottom: '0',
-        width: '100vw',
-        height: '100vh',
-        background: 'rgba(0, 0, 0, 0.5)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '20px',
-        zIndex: 9999
-      }}
     >
-      <div 
-        className="cart-modal-backdrop rounded-2xl flex flex-col" 
-        style={{ 
-          width: '100%',
-          maxWidth: '32rem',
-          maxHeight: 'calc(100vh - 40px)',
-          position: 'relative'
-        }}
-      >
+      <div className="cart-modal-backdrop rounded-2xl flex flex-col">
         {/* Fixed Header */}
         <div className="flex justify-between items-center p-6 pb-4 border-b border-gray-100 flex-shrink-0">
           <h3 className="text-2xl font-bold modern-blur-text" data-testid="text-cart-title">
