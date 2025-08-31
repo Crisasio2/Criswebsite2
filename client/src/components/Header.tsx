@@ -5,9 +5,10 @@ import { useState, useEffect } from 'react';
 interface HeaderProps {
   onCartToggle: () => void;
   onPageTransition?: (href: string) => void;
+  logoOverride?: string | null;
 }
 
-export default function Header({ onCartToggle, onPageTransition }: HeaderProps) {
+export default function Header({ onCartToggle, onPageTransition, logoOverride }: HeaderProps) {
   const [location] = useLocation();
   const { getTotalItems } = useCartStore();
   const totalItems = getTotalItems();
@@ -65,14 +66,14 @@ export default function Header({ onCartToggle, onPageTransition }: HeaderProps) 
       >
         <div className="ecrist-logo-icon">🌿</div>
         <div className="ecrist-logo-text">
-          {isMainPage ? (
+          {logoOverride || (isMainPage ? (
             <span>EcoCrist</span>
           ) : (
             <>
               <span className="ecrist-logo-short">E'Crist Commerce</span>
               <span className="ecrist-logo-full">EcoCrist</span>
             </>
-          )}
+          ))}
         </div>
       </Link>
       <nav className="ecrist-nav-menu">

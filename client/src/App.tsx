@@ -20,6 +20,7 @@ function Router() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [transitionStage, setTransitionStage] = useState<'idle' | 'fadeOut' | 'expand' | 'fadeIn'>('idle');
   const [targetPage, setTargetPage] = useState<string>('');
+  const [logoOverride, setLogoOverride] = useState<string | null>(null);
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
@@ -30,6 +31,11 @@ function Router() {
     
     setIsTransitioning(true);
     setTargetPage(href);
+    
+    // Si vamos a la página principal, cambiar inmediatamente el logo a "EcoCrist"
+    if (href === '/') {
+      setLogoOverride('EcoCrist');
+    }
     
     // Fase 1: Fade out del contenido actual
     setTransitionStage('fadeOut');
@@ -50,6 +56,7 @@ function Router() {
     setTransitionStage('idle');
     setIsTransitioning(false);
     setTargetPage('');
+    setLogoOverride(null);
   };
 
   // Agregar/quitar clase al body según la página
@@ -68,7 +75,7 @@ function Router() {
 
   return (
     <div className={`ecrist-container ${isTransitioning ? `transitioning transition-${transitionStage}` : ''}`}>
-      <Header onCartToggle={toggleCart} onPageTransition={handlePageTransition} />
+      <Header onCartToggle={toggleCart} onPageTransition={handlePageTransition} logoOverride={logoOverride} />
       
       <div className="page-content">
         <Switch>
