@@ -214,24 +214,25 @@
 .ecrist-header-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 15px 20px;
-  display: flex;
+  padding: 20px 40px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-  justify-content: space-between;
-  height: 70px;
+  gap: 20px;
+  height: 80px;
   box-sizing: border-box;
 }
 
 .ecrist-enhanced-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   text-decoration: none;
   color: var(--ecrist-primary);
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
   transition: all 0.3s ease;
-  flex-shrink: 0;
+  justify-self: start;
 }
 
 .ecrist-enhanced-logo .ecrist-logo-icon {
@@ -265,9 +266,9 @@
 .ecrist-search-section {
   display: flex;
   justify-content: center;
-  flex: 1;
+  justify-self: center;
+  width: 100%;
   max-width: 500px;
-  margin: 0 30px;
 }
 
 .ecrist-search-input-container {
@@ -277,13 +278,13 @@
 
 .ecrist-main-search-input {
   width: 100%;
-  padding: 12px 50px 12px 16px;
+  padding: 14px 55px 14px 20px;
   border: 2px solid var(--ecrist-primary-light);
-  border-radius: 25px;
-  font-size: 14px;
+  border-radius: 30px;
+  font-size: 15px;
   outline: none;
-  transition: border-color 0.3s ease;
-  min-width: 300px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .ecrist-main-search-input:focus {
@@ -292,21 +293,22 @@
 
 .ecrist-search-btn {
   position: absolute;
-  right: 4px;
+  right: 6px;
   top: 50%;
   transform: translateY(-50%);
   background: var(--ecrist-primary);
   color: white;
   border: none;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  transition: background 0.3s ease;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .ecrist-search-btn:hover {
@@ -316,9 +318,9 @@
 .ecrist-user-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 13px;
-  flex-shrink: 0;
+  gap: 15px;
+  font-size: 14px;
+  justify-self: end;
 }
 
 .ecrist-user-info {
@@ -433,25 +435,29 @@
 /* Responsive Design for Enhanced Header */
 @media (max-width: 768px) {
   .ecrist-header-container {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
     height: auto;
     padding: 20px;
-    gap: 15px;
+    gap: 20px;
+    text-align: center;
   }
   
   .ecrist-enhanced-logo {
-    font-size: 16px;
+    justify-self: center;
+    font-size: 18px;
   }
   
   .ecrist-search-section {
+    justify-self: center;
     max-width: none;
-    margin: 0;
     width: 100%;
   }
   
   .ecrist-user-actions {
-    gap: 8px;
-    font-size: 12px;
+    justify-self: center;
+    gap: 10px;
+    font-size: 13px;
   }
   
   .ecrist-purchases-link {
@@ -461,6 +467,7 @@
   .ecrist-secondary-nav {
     flex-wrap: wrap;
     gap: 15px;
+    justify-content: center;
   }
 }
 
