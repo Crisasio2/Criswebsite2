@@ -782,6 +782,19 @@
   isolation: isolate;
 }
 
+/* Prevent hero movement when cart modal is open */
+body:has(.cart-modal-overlay) .ecrist-hero-extended {
+  position: relative !important;
+  transform: none !important;
+  will-change: auto !important;
+}
+
+body:has(.cart-modal-overlay) .ecrist-container {
+  position: relative !important;
+  transform: none !important;
+  will-change: auto !important;
+}
+
 .modern-blur-modal {
   isolation: isolate;
 }
