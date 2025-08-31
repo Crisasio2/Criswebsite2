@@ -287,12 +287,9 @@
 
 /* Golden shine effect for main page logo */
 .ecrist-logo-main-page .ecrist-logo-text {
-  background: var(--ecrist-gold-gradient) !important;
-  background-clip: text !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
   position: relative;
   overflow: hidden;
+  color: var(--ecrist-text-primary);
 }
 
 .ecrist-logo-main-page .ecrist-logo-text::before {
@@ -307,6 +304,7 @@
   will-change: transform;
   z-index: 1;
   pointer-events: none;
+  mix-blend-mode: overlay;
 }
 
 /* No hover effect when in main page */
