@@ -52,7 +52,17 @@ export default function Header({ onCartToggle, onPageTransition }: HeaderProps) 
         ? 'header-main-page' 
         : (isHeaderVisible ? 'header-visible' : 'header-hidden')
     }`}>
-      <Link href="/" className={logoClass} data-testid="link-logo">
+      <Link 
+        href="/" 
+        className={logoClass} 
+        data-testid="link-logo"
+        onClick={(e) => {
+          if (!isMainPage && onPageTransition) {
+            e.preventDefault();
+            onPageTransition('/');
+          }
+        }}
+      >
         <div className="ecrist-logo-icon">🌿</div>
         <div className="ecrist-logo-text">
           {isMainPage ? (
