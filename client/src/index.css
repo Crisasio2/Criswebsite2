@@ -117,6 +117,17 @@
   }
 }
 
+@keyframes cartModalFastOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes cartModalOpen {
   0% {
     opacity: 0;
@@ -491,7 +502,7 @@
   z-index: 1000;
 }
 
-/* Cart modal with immediate blur and 0.5s open animation */
+/* Cart modal with instant blur, only animate position/opacity */
 .cart-modal-backdrop {
   background: rgba(0, 0, 0, 0.4) !important;
   backdrop-filter: blur(20px) saturate(150%) !important;
@@ -505,10 +516,8 @@
   position: relative;
   overflow: hidden;
   z-index: 1000;
-  opacity: 1;
-  transform: translateY(0);
-  will-change: transform, opacity, backdrop-filter;
-  animation: cartModalOpen 0.2s ease-out both;
+  will-change: transform, opacity;
+  animation: cartModalFastOpen 0.2s ease-out both;
 }
 
 .cart-modal-backdrop::before {
