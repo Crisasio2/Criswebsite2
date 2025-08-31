@@ -34,7 +34,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
           id: Date.now().toString(),
           productId: product.id,
           quantity: 1,
-          userId: undefined,
+          userId: null,
           product
         };
         return {

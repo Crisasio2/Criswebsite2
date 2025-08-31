@@ -268,7 +268,7 @@ export class MemStorage implements IStorage {
     }
     
     // Calcular similitud con el query
-    const suggestions = [...allWords]
+    const suggestions = Array.from(allWords)
       .map(word => ({
         word,
         similarity: this.calculateSimilarity(normalizedQuery, word)
