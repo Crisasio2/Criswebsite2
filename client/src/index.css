@@ -186,8 +186,7 @@
 
 /* Main Container */
 .ecrist-container {
-  max-width: min(750px, calc(100vw - 40px));
-  width: 100%;
+  width: min(600px, calc(100vw - 40px));
   margin: 0 auto;
   background: var(--ecrist-white);
   border-radius: clamp(15px, 2vw, 20px);
