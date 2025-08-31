@@ -11,6 +11,7 @@ export interface IStorage {
   getProduct(id: string): Promise<Product | undefined>;
   createProduct(product: InsertProduct): Promise<Product>;
   searchProducts(query: string, category?: string): Promise<Product[]>;
+  getSearchSuggestions(query: string): Promise<string[]>;
   
   // Cart
   getCartItems(userId?: string): Promise<CartItem[]>;
@@ -137,6 +138,40 @@ export class MemStorage implements IStorage {
     return product;
   }
 
+  // Función para normalizar texto eliminando tildes y caracteres especiales
+  private normalizeText(text: string): string {
+    return text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // Elimina tildes y diacríticos
+      .replace(/[^a-z0-9\s]/g, '') // Elimina caracteres especiales excepto espacios
+      .trim();
+  }
+
+  // Función para calcular similitud entre strings (algoritmo de Levenshtein simplificado)
+  private calculateSimilarity(str1: string, str2: string): number {
+    const longer = str1.length > str2.length ? str1 : str2;
+    const shorter = str1.length > str2.length ? str2 : str1;
+    
+    if (longer.length === 0) return 1.0;
+    
+    // Búsqueda exacta de substring
+    if (longer.includes(shorter)) return 0.9;
+    
+    // Búsqueda de palabras individuales
+    const shorterWords = shorter.split(' ');
+    const longerWords = longer.split(' ');
+    let matchedWords = 0;
+    
+    shorterWords.forEach(word => {
+      if (longerWords.some(lWord => lWord.includes(word) || word.includes(lWord))) {
+        matchedWords++;
+      }
+    });
+    
+    return shorterWords.length > 0 ? matchedWords / shorterWords.length : 0;
+  }
+
   async searchProducts(query: string, category?: string): Promise<Product[]> {
     const allProducts = Array.from(this.products.values());
     
@@ -144,20 +179,121 @@ export class MemStorage implements IStorage {
       return allProducts;
     }
     
-    const lowerQuery = query?.toLowerCase().trim();
-    const lowerCategory = category?.toLowerCase().trim();
+    const normalizedQuery = this.normalizeText(query || '');
+    const normalizedCategory = this.normalizeText(category || '');
     
-    return allProducts.filter(product => {
-      const matchesQuery = !lowerQuery || 
-        product.name.toLowerCase().includes(lowerQuery) ||
-        product.description.toLowerCase().includes(lowerQuery) ||
-        product.material?.toLowerCase().includes(lowerQuery);
+    // Primero, búsqueda exacta
+    const exactMatches = allProducts.filter(product => {
+      const normalizedName = this.normalizeText(product.name);
+      const normalizedDescription = this.normalizeText(product.description);
+      const normalizedMaterial = this.normalizeText(product.material || '');
+      const normalizedProductCategory = this.normalizeText(product.category);
       
-      const matchesCategory = !lowerCategory || 
-        product.category.toLowerCase().includes(lowerCategory);
+      const matchesQuery = !normalizedQuery || 
+        normalizedName.includes(normalizedQuery) ||
+        normalizedDescription.includes(normalizedQuery) ||
+        normalizedMaterial.includes(normalizedQuery);
+      
+      const matchesCategory = !normalizedCategory || 
+        normalizedProductCategory.includes(normalizedCategory);
       
       return matchesQuery && matchesCategory;
     });
+
+    // Si hay coincidencias exactas, devolver esas
+    if (exactMatches.length > 0) {
+      return exactMatches;
+    }
+
+    // Si no hay coincidencias exactas, hacer búsqueda inteligente con similitud
+    const fuzzyMatches = allProducts
+      .map(product => {
+        const normalizedName = this.normalizeText(product.name);
+        const normalizedDescription = this.normalizeText(product.description);
+        const normalizedMaterial = this.normalizeText(product.material || '');
+        const normalizedProductCategory = this.normalizeText(product.category);
+        
+        let queryScore = 0;
+        let categoryScore = 1; // Por defecto, categoria coincide si no se especifica
+        
+        if (normalizedQuery) {
+          const nameScore = this.calculateSimilarity(normalizedQuery, normalizedName);
+          const descScore = this.calculateSimilarity(normalizedQuery, normalizedDescription);
+          const materialScore = this.calculateSimilarity(normalizedQuery, normalizedMaterial);
+          queryScore = Math.max(nameScore, descScore, materialScore);
+        }
+        
+        if (normalizedCategory) {
+          categoryScore = this.calculateSimilarity(normalizedCategory, normalizedProductCategory);
+        }
+        
+        // Score combinado (query score tiene más peso)
+        const totalScore = normalizedQuery ? (queryScore * 0.7 + categoryScore * 0.3) : categoryScore;
+        
+        return { product, score: totalScore };
+      })
+      .filter(item => item.score > 0.3) // Solo productos con similaridad razonable
+      .sort((a, b) => b.score - a.score) // Ordenar por relevancia
+      .map(item => item.product);
+
+    return fuzzyMatches;
+  }
+
+  async getSearchSuggestions(query: string): Promise<string[]> {
+    const allProducts = Array.from(this.products.values());
+    const normalizedQuery = this.normalizeText(query);
+    
+    // Obtener todas las palabras únicas de productos
+    const allWords = new Set<string>();
+    const commonSearchTerms = [
+      'champu', 'jabon', 'cepillo', 'bolsa', 'vela', 'termo',
+      'natural', 'ecologico', 'organico', 'sostenible', 'biodegradable',
+      'bambu', 'algodon', 'soja', 'acero', 'artesanal',
+      'cosmetica', 'higiene', 'hogar', 'limpieza', 'cuidado',
+      'reutilizable', 'reciclado', 'compost', 'plastico'
+    ];
+    
+    for (const product of allProducts) {
+      const words = this.normalizeText(`${product.name} ${product.description} ${product.category} ${product.material}`)
+        .split(' ')
+        .filter(word => word.length > 2);
+      for (const word of words) {
+        allWords.add(word);
+      }
+    }
+    
+    // Agregar términos comunes de búsqueda
+    for (const term of commonSearchTerms) {
+      allWords.add(term);
+    }
+    
+    // Calcular similitud con el query
+    const suggestions = [...allWords]
+      .map(word => ({
+        word,
+        similarity: this.calculateSimilarity(normalizedQuery, word)
+      }))
+      .filter(item => item.similarity > 0.4 && item.word !== normalizedQuery)
+      .sort((a, b) => b.similarity - a.similarity)
+      .slice(0, 5)
+      .map(item => item.word);
+    
+    // También sugerir nombres de productos similares
+    const productSuggestions = allProducts
+      .map(product => ({
+        name: product.name,
+        similarity: this.calculateSimilarity(normalizedQuery, this.normalizeText(product.name))
+      }))
+      .filter(item => item.similarity > 0.3)
+      .sort((a, b) => b.similarity - a.similarity)
+      .slice(0, 3)
+      .map(item => item.name);
+    
+    const combinedSuggestions = [...suggestions, ...productSuggestions];
+    const uniqueSuggestions = combinedSuggestions.filter((item, index) => 
+      combinedSuggestions.indexOf(item) === index
+    );
+    return uniqueSuggestions.slice(0, 5);
   }
 
   async getCartItems(userId?: string): Promise<CartItem[]> {

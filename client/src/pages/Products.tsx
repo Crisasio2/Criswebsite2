@@ -1,12 +1,19 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchStore } from '@/lib/store';
 import ProductCard from '@/components/ProductCard';
 import type { Product } from '@shared/schema';
+import { apiRequest } from '@/lib/queryClient';
 
 export default function Products() {
   const { currentSearch, setSearch } = useSearchStore();
   const [searchValue, setSearchValue] = useState(currentSearch);
+  const [searchResults, setSearchResults] = useState<{
+    products: Product[];
+    suggestions: string[];
+    totalFound: number;
+  }>({ products: [], suggestions: [], totalFound: 0 });
+  const [isSearching, setIsSearching] = useState(false);
   
   const { data: allProducts = [], isLoading } = useQuery<Product[]>({
     queryKey: ['/api/products'],
@@ -15,28 +22,59 @@ export default function Products() {
   // Sync searchValue with currentSearch from store
   useEffect(() => {
     setSearchValue(currentSearch);
-  }, [currentSearch]);
+    if (currentSearch.trim()) {
+      performSearch(currentSearch);
+    } else {
+      setSearchResults({ products: allProducts, suggestions: [], totalFound: allProducts.length });
+    }
+  }, [currentSearch, allProducts]);
   
-  // Memoized filtered products for better performance
-  const displayProducts = useMemo(() => {
-    if (!searchValue.trim()) {
-      return allProducts;
+  const performSearch = async (query: string) => {
+    if (!query.trim()) {
+      setSearchResults({ products: allProducts, suggestions: [], totalFound: allProducts.length });
+      return;
     }
     
-    return allProducts.filter(product => {
-      const searchLower = searchValue.toLowerCase();
-      return (
-        product.name.toLowerCase().includes(searchLower) ||
-        product.description.toLowerCase().includes(searchLower)
-      );
-    });
-  }, [allProducts, searchValue]);
+    setIsSearching(true);
+    try {
+      const response = await fetch('/api/products/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ product: query })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Search failed');
+      }
+      
+      const data = await response.json();
+      
+      setSearchResults({
+        products: data.products || [],
+        suggestions: data.suggestions || [],
+        totalFound: data.totalFound || 0
+      });
+    } catch (error) {
+      console.error('Error searching products:', error);
+      setSearchResults({ products: [], suggestions: [], totalFound: 0 });
+    } finally {
+      setIsSearching(false);
+    }
+  };
   
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchValue(value);
     setSearch(value);
   };
+  
+  const handleSuggestionClick = (suggestion: string) => {
+    setSearchValue(suggestion);
+    setSearch(suggestion);
+    performSearch(suggestion);
+  };
+  
+  const displayProducts = searchValue.trim() ? searchResults.products : allProducts;
 
   if (isLoading) {
     return (
@@ -79,15 +117,44 @@ export default function Products() {
           </div>
         </div>
         
+        {/* Search Status */}
+        {searchValue.trim() && (
+          <div className="mb-6 text-center">
+            <p className="text-gray-600">
+              {isSearching ? 'Buscando...' : `${displayProducts.length} ${displayProducts.length === 1 ? 'producto encontrado' : 'productos encontrados'} para "${searchValue}"`}
+            </p>
+          </div>
+        )}
+        
+        {/* Suggestions */}
+        {searchValue.trim() && searchResults.suggestions.length > 0 && displayProducts.length === 0 && (
+          <div className="mb-8 text-center">
+            <p className="text-gray-600 mb-3">¿Quizás quisiste buscar:</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {searchResults.suggestions.map((suggestion, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleSuggestionClick(suggestion)}
+                  className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm hover:bg-green-200 transition-colors"
+                  data-testid={`button-suggestion-${index}`}
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        
         <div className="ecrist-products-grid" data-testid="grid-products">
           {displayProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
         
-        {searchValue.trim() && displayProducts.length === 0 && !isLoading && (
+        {searchValue.trim() && displayProducts.length === 0 && searchResults.suggestions.length === 0 && !isSearching && !isLoading && (
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">No se encontraron productos para "{searchValue}"</p>
+            <p className="text-gray-400 text-sm mt-2">Intenta con términos diferentes o revisa la ortografía</p>
           </div>
         )}
       </div>

@@ -40,7 +40,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         filters.product || "",
         filters.category
       );
-      res.json(products);
+      
+      // Si no hay resultados, proporcionar sugerencias
+      let suggestions: string[] = [];
+      if (products.length === 0 && filters.product) {
+        suggestions = await storage.getSearchSuggestions(filters.product);
+      }
+      
+      res.json({ 
+        products, 
+        suggestions,
+        totalFound: products.length,
+        searchQuery: filters.product || "",
+        searchCategory: filters.category || ""
+      });
     } catch (error) {
       res.status(400).json({ message: "Invalid search parameters" });
     }
