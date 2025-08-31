@@ -195,9 +195,10 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 32px;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 100vw;
   z-index: 1001;
   padding: 0;
   margin: 0;
@@ -206,24 +207,25 @@
 }
 
 .ecrist-enhanced-header.header-visible {
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 .ecrist-enhanced-header.header-hidden {
-  transform: translateY(-100%);
+  transform: translateX(-50%) translateY(-100%);
 }
 
 .ecrist-header-container {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 15px 40px;
-  gap: 20px;
   background: white;
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
 }
 
 .ecrist-enhanced-logo {
@@ -235,7 +237,7 @@
   font-weight: bold;
   font-size: 18px;
   transition: all 0.3s ease;
-  justify-self: start;
+  flex: 0 0 auto;
 }
 
 .ecrist-enhanced-logo .ecrist-logo-icon {
@@ -269,9 +271,9 @@
 .ecrist-search-section {
   display: flex;
   justify-content: center;
-  justify-self: center;
-  width: 100%;
+  flex: 1;
   max-width: 500px;
+  margin: 0 20px;
 }
 
 .ecrist-search-input-container {
@@ -321,7 +323,7 @@
   align-items: center;
   gap: 12px;
   font-size: 13px;
-  justify-self: end;
+  flex: 0 0 auto;
 }
 
 .ecrist-user-info {
@@ -436,32 +438,27 @@
 /* Responsive Design for Enhanced Header */
 @media (max-width: 768px) {
   .ecrist-header-container {
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
+    flex-direction: column;
     gap: 15px;
     padding: 15px 20px;
   }
   
   .ecrist-enhanced-logo {
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: start;
     font-size: 16px;
-  }
-  
-  .ecrist-user-actions {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: end;
-    gap: 8px;
-    font-size: 12px;
+    order: 1;
   }
   
   .ecrist-search-section {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    justify-self: stretch;
+    order: 2;
     max-width: none;
+    margin: 0;
+    width: 100%;
+  }
+  
+  .ecrist-user-actions {
+    order: 3;
+    gap: 8px;
+    font-size: 12px;
   }
   
   .ecrist-purchases-link {
