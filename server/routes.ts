@@ -67,14 +67,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const cartItemData = insertCartItemSchema.parse(req.body);
       
       // Check if item already exists in cart
-      const existingItems = await storage.getCartItems(cartItemData.userId);
+      const existingItems = await storage.getCartItems(cartItemData.userId || undefined);
       const existingItem = existingItems.find(item => item.productId === cartItemData.productId);
       
       if (existingItem) {
         // Update quantity
         const updatedItem = await storage.updateCartItemQuantity(
           existingItem.id, 
-          existingItem.quantity + cartItemData.quantity
+          existingItem.quantity + (cartItemData.quantity || 1)
         );
         const product = await storage.getProduct(updatedItem!.productId);
         res.json({ ...updatedItem, product });

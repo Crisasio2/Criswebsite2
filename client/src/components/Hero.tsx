@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLocation } from 'wouter';
-import naturalezaImage from '../naturaleza.jpg';
+// Using CSS background instead of importing image to avoid build issues
+// import naturalezaImage from '@assets/Imagen naturaleza_1756588974717.jpg';
 import type { SearchFilters } from '@shared/schema';
 
 interface HeroProps {
@@ -39,7 +40,7 @@ export default function Hero({ onSearch }: HeroProps) {
     <section 
       className="ecrist-hero-extended"
       style={{
-        backgroundImage: `url(${naturalezaImage})`,
+        backgroundImage: `url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}

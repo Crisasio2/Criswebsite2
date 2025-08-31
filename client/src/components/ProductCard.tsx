@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo, useCallback } from 'react';
 import { useCartStore } from '@/lib/store';
 import type { Product } from '@shared/schema';
 
@@ -6,18 +6,20 @@ interface ProductCardProps {
   product: Product;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+function ProductCard({ product }: ProductCardProps) {
   const [isAdding, setIsAdding] = useState(false);
   const { addItem } = useCartStore();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = useCallback(() => {
     setIsAdding(true);
     addItem(product);
     
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setIsAdding(false);
     }, 1000);
-  };
+    
+    return () => clearTimeout(timer);
+  }, [product, addItem]);
 
   return (
     <div className="ecrist-product-card" data-testid={`card-product-${product.id}`}>
@@ -50,3 +52,5 @@ export default function ProductCard({ product }: ProductCardProps) {
     </div>
   );
 }
+
+export default memo(ProductCard);

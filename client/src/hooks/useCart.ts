@@ -1,12 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
 import type { CartItemWithProduct, InsertCartItem } from '@shared/schema';
+import { useMemo } from 'react';
 
 export function useCart() {
   const queryClient = useQueryClient();
 
   const cartQuery = useQuery<CartItemWithProduct[]>({
     queryKey: ['/api/cart'],
+    staleTime: 30000, // 30 segundos de cache
   });
 
   const addToCartMutation = useMutation({
@@ -49,6 +51,17 @@ export function useCart() {
     },
   });
 
+  const totalItems = useMemo(() => 
+    (cartQuery.data || []).reduce((total, item) => total + item.quantity, 0),
+    [cartQuery.data]
+  );
+
+  const totalPrice = useMemo(() => 
+    (cartQuery.data || []).reduce((total, item) => 
+      total + (parseFloat(item.product?.price || "0") * item.quantity), 0),
+    [cartQuery.data]
+  );
+
   return {
     cartItems: cartQuery.data || [],
     isLoading: cartQuery.isLoading,
@@ -57,7 +70,9 @@ export function useCart() {
     removeFromCart: removeFromCartMutation.mutate,
     clearCart: clearCartMutation.mutate,
     isAddingToCart: addToCartMutation.isPending,
-    getTotalItems: () => (cartQuery.data || []).reduce((total, item) => total + item.quantity, 0),
-    getTotalPrice: () => (cartQuery.data || []).reduce((total, item) => total + (parseFloat(item.product?.price || "0") * item.quantity), 0),
+    totalItems,
+    totalPrice,
+    getTotalItems: () => totalItems,
+    getTotalPrice: () => totalPrice,
   };
 }

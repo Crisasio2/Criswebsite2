@@ -126,21 +126,35 @@ export class MemStorage implements IStorage {
 
   async createProduct(insertProduct: InsertProduct): Promise<Product> {
     const id = randomUUID();
-    const product: Product = { ...insertProduct, id };
+    const product: Product = { 
+      ...insertProduct, 
+      id,
+      material: insertProduct.material ?? null,
+      certification: insertProduct.certification ?? null,
+      inStock: insertProduct.inStock ?? null
+    };
     this.products.set(id, product);
     return product;
   }
 
   async searchProducts(query: string, category?: string): Promise<Product[]> {
     const allProducts = Array.from(this.products.values());
+    
+    if (!query && !category) {
+      return allProducts;
+    }
+    
+    const lowerQuery = query?.toLowerCase().trim();
+    const lowerCategory = category?.toLowerCase().trim();
+    
     return allProducts.filter(product => {
-      const matchesQuery = !query || 
-        product.name.toLowerCase().includes(query.toLowerCase()) ||
-        product.description.toLowerCase().includes(query.toLowerCase()) ||
-        product.material?.toLowerCase().includes(query.toLowerCase());
+      const matchesQuery = !lowerQuery || 
+        product.name.toLowerCase().includes(lowerQuery) ||
+        product.description.toLowerCase().includes(lowerQuery) ||
+        product.material?.toLowerCase().includes(lowerQuery);
       
-      const matchesCategory = !category || 
-        product.category.toLowerCase().includes(category.toLowerCase());
+      const matchesCategory = !lowerCategory || 
+        product.category.toLowerCase().includes(lowerCategory);
       
       return matchesQuery && matchesCategory;
     });
@@ -154,7 +168,12 @@ export class MemStorage implements IStorage {
 
   async addToCart(insertCartItem: InsertCartItem): Promise<CartItem> {
     const id = randomUUID();
-    const cartItem: CartItem = { ...insertCartItem, id };
+    const cartItem: CartItem = { 
+      ...insertCartItem, 
+      id,
+      quantity: insertCartItem.quantity || 1,
+      userId: insertCartItem.userId ?? null
+    };
     this.cartItems.set(id, cartItem);
     return cartItem;
   }
@@ -175,11 +194,11 @@ export class MemStorage implements IStorage {
 
   async clearCart(userId?: string): Promise<void> {
     if (userId) {
-      for (const [id, item] of this.cartItems.entries()) {
-        if (item.userId === userId) {
-          this.cartItems.delete(id);
-        }
-      }
+      const itemsToDelete = Array.from(this.cartItems.entries())
+        .filter(([, item]) => item.userId === userId)
+        .map(([id]) => id);
+      
+      itemsToDelete.forEach(id => this.cartItems.delete(id));
     } else {
       this.cartItems.clear();
     }
