@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react';
 
 interface HeaderProps {
   onCartToggle: () => void;
+  onPageTransition?: (href: string) => void;
 }
 
-export default function Header({ onCartToggle }: HeaderProps) {
+export default function Header({ onCartToggle, onPageTransition }: HeaderProps) {
   const [location] = useLocation();
   const { getTotalItems } = useCartStore();
   const totalItems = getTotalItems();
@@ -69,6 +70,12 @@ export default function Header({ onCartToggle }: HeaderProps) {
           href="/inicio" 
           className={`ecrist-nav-link ${isActive('/inicio') ? 'active' : ''}`}
           data-testid="link-home"
+          onClick={(e) => {
+            if (isMainPage && onPageTransition) {
+              e.preventDefault();
+              onPageTransition('/inicio');
+            }
+          }}
         >
           Inicio
         </Link>
@@ -76,6 +83,12 @@ export default function Header({ onCartToggle }: HeaderProps) {
           href="/productos" 
           className={`ecrist-nav-link ${isActive('/productos') ? 'active' : ''}`}
           data-testid="link-products"
+          onClick={(e) => {
+            if (isMainPage && onPageTransition) {
+              e.preventDefault();
+              onPageTransition('/productos');
+            }
+          }}
         >
           Productos
         </Link>
@@ -83,6 +96,12 @@ export default function Header({ onCartToggle }: HeaderProps) {
           href="/sostenibilidad" 
           className={`ecrist-nav-link ${isActive('/sostenibilidad') ? 'active' : ''}`}
           data-testid="link-sustainability"
+          onClick={(e) => {
+            if (isMainPage && onPageTransition) {
+              e.preventDefault();
+              onPageTransition('/sostenibilidad');
+            }
+          }}
         >
           Sostenibilidad
         </Link>
@@ -90,6 +109,12 @@ export default function Header({ onCartToggle }: HeaderProps) {
           href="/nosotros" 
           className={`ecrist-nav-link ${isActive('/nosotros') ? 'active' : ''}`}
           data-testid="link-about"
+          onClick={(e) => {
+            if (isMainPage && onPageTransition) {
+              e.preventDefault();
+              onPageTransition('/nosotros');
+            }
+          }}
         >
           Nosotros
         </Link>

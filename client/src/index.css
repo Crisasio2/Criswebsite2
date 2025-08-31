@@ -148,6 +148,39 @@
   }
 }
 
+/* Animaciones de transición de página */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes expandWhite {
+  0% {
+    transform: scale(0.8);
+    border-radius: clamp(15px, 2vw, 20px);
+  }
+  100% {
+    transform: scale(1);
+    border-radius: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @keyframes directSlideUp {
   0% {
     opacity: 0;
@@ -247,6 +280,50 @@
   position: static;
   transform: none;
   margin-bottom: clamp(20px, 4vh, 30px);
+}
+
+/* Estilos para transiciones de página */
+.page-content {
+  position: relative;
+  z-index: 2;
+}
+
+.transitioning.transition-fadeOut .page-content {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+.transitioning.transition-fadeIn .page-content {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.transitioning.transition-expand {
+  animation: expandWhite 0.4s ease-out forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.transition-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--ecrist-white);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.transition-overlay-fadeOut {
+  opacity: 0;
+}
+
+.transition-overlay-expand {
+  opacity: 1;
+  animation: expandWhite 0.4s ease-out forwards;
+}
+
+.transition-overlay-fadeIn {
+  animation: fadeOut 0.3s ease-out forwards;
 }
 
 .ecrist-logo {

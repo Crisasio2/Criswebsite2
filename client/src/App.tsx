@@ -16,10 +16,40 @@ import NotFound from "@/pages/not-found";
 
 function Router() {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitionStage, setTransitionStage] = useState<'idle' | 'fadeOut' | 'expand' | 'fadeIn'>('idle');
+  const [targetPage, setTargetPage] = useState<string>('');
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
+  };
+
+  const handlePageTransition = async (href: string) => {
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
+    setTargetPage(href);
+    
+    // Fase 1: Fade out del contenido actual
+    setTransitionStage('fadeOut');
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    // Fase 2: Expandir el fondo blanco
+    setTransitionStage('expand');
+    await new Promise(resolve => setTimeout(resolve, 400));
+    
+    // Cambiar la página
+    setLocation(href);
+    
+    // Fase 3: Fade in del nuevo contenido
+    setTransitionStage('fadeIn');
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    // Resetear estados
+    setTransitionStage('idle');
+    setIsTransitioning(false);
+    setTargetPage('');
   };
 
   // Agregar/quitar clase al body según la página
@@ -37,17 +67,23 @@ function Router() {
   }, [location]);
 
   return (
-    <div className="ecrist-container">
-      <Header onCartToggle={toggleCart} />
+    <div className={`ecrist-container ${isTransitioning ? `transitioning transition-${transitionStage}` : ''}`}>
+      <Header onCartToggle={toggleCart} onPageTransition={handlePageTransition} />
       
-      <Switch>
-        <Route path="/" component={ECristCommerce} />
-        <Route path="/inicio" component={Home} />
-        <Route path="/productos" component={Products} />
-        <Route path="/sostenibilidad" component={Sustainability} />
-        <Route path="/nosotros" component={About} />
-        <Route component={NotFound} />
-      </Switch>
+      <div className="page-content">
+        <Switch>
+          <Route path="/" component={ECristCommerce} />
+          <Route path="/inicio" component={Home} />
+          <Route path="/productos" component={Products} />
+          <Route path="/sostenibilidad" component={Sustainability} />
+          <Route path="/nosotros" component={About} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+      
+      {isTransitioning && (
+        <div className={`transition-overlay transition-overlay-${transitionStage}`}></div>
+      )}
       
       <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
