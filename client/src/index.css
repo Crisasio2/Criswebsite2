@@ -1318,8 +1318,15 @@ body:not(.main-page) .ecrist-header {
   position: relative;
   animation: slideUp 1s ease-out 0.5s both;
   background: rgba(0, 0, 0, 0.5);
-  padding: clamp(2vh, 3vh, 4vh) clamp(3vw, 5vw, 7vw);
+  padding: clamp(3vh, 5vh, 8vh) clamp(4vw, 8vw, 12vw);
   border-radius: clamp(8px, 2vw, 15px);
+  width: clamp(60vw, 80vw, 90vw);
+  max-width: 90vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   /* backdrop-filter blur removed */
 }
 
@@ -1411,7 +1418,7 @@ body:not(.main-page) .ecrist-header {
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
   border-radius: clamp(12px, 3vw, 20px);
-  padding: clamp(2vh, 3vh, 4vh) clamp(2vw, 4vw, 6vw);
+  padding: clamp(2vh, 3vh, 4vh);
   display: flex;
   gap: clamp(1vw, 2vw, 3vw);
   align-items: end;
@@ -1420,8 +1427,8 @@ body:not(.main-page) .ecrist-header {
     0 10px 30px hsla(82, 64%, 20%, 0.25),
     inset 0 1px 0 hsla(255, 255, 255, 0.6),
     inset 0 -1px 0 hsla(0, 0%, 0%, 0.1);
-  max-width: min(70vw, 90vw);
   width: 100%;
+  max-width: 90%;
   border: 2px solid hsla(255, 255, 255, 0.6);
   animation: slideUp 1.2s ease-out 1.1s both;
   position: relative;
