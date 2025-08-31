@@ -82,6 +82,7 @@
     background-color: #f4f8f4;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
+    padding-top: 80px; /* Espacio para el header fijo */
   }
   
   html {
@@ -212,6 +213,20 @@
   gap: clamp(20px, 4vw, 40px);
   animation: slideDown 0.8s ease-out 0.2s both;
   will-change: transform;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.ecrist-header.header-visible {
+  transform: translateY(0);
+}
+
+.ecrist-header.header-hidden {
+  transform: translateY(-100%);
 }
 
 .ecrist-logo {

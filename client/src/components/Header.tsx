@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'wouter';
 import { useCartStore } from '@/lib/store';
+import { useState, useEffect } from 'react';
 
 interface HeaderProps {
   onCartToggle: () => void;
@@ -9,6 +10,28 @@ export default function Header({ onCartToggle }: HeaderProps) {
   const [location] = useLocation();
   const { getTotalItems } = useCartStore();
   const totalItems = getTotalItems();
+  
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Solo ocultar después de haber scrolleado 100px
+      if (currentScrollY < 100) {
+        setIsHeaderVisible(true);
+      } else {
+        // Si scrollea hacia abajo, ocultar; si scrollea hacia arriba, mostrar
+        setIsHeaderVisible(currentScrollY < lastScrollY);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   const isActive = (path: string) => {
     if (path === '/' && location === '/') return true;
@@ -20,7 +43,7 @@ export default function Header({ onCartToggle }: HeaderProps) {
   const logoClass = isMainPage ? 'ecrist-logo ecrist-logo-main-page' : 'ecrist-logo';
 
   return (
-    <header className="ecrist-header bg-[#001cba9c]">
+    <header className={`ecrist-header bg-[#001cba9c] ${isHeaderVisible ? 'header-visible' : 'header-hidden'}`}>
       <Link href="/" className={logoClass} data-testid="link-logo">
         <div className="ecrist-logo-icon">🌿</div>
         <div className="ecrist-logo-text">
