@@ -82,7 +82,11 @@
     background-color: #f4f8f4;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    padding-top: 80px; /* Espacio para el header fijo */
+  }
+  
+  /* Aplicar padding-top solo cuando no estemos en la página principal */
+  body:not(.main-page) {
+    padding-top: 80px;
   }
   
   html {
@@ -227,6 +231,11 @@
 
 .ecrist-header.header-hidden {
   transform: translateY(-100%);
+}
+
+.ecrist-header.header-main-page {
+  position: static;
+  transform: none;
 }
 
 .ecrist-logo {

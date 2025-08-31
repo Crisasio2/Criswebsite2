@@ -13,8 +13,13 @@ export default function Header({ onCartToggle }: HeaderProps) {
   
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  
+  const isMainPage = location === '/';
 
   useEffect(() => {
+    // Solo aplicar la funcionalidad de scroll en páginas que no sean la principal
+    if (isMainPage) return;
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
@@ -31,19 +36,21 @@ export default function Header({ onCartToggle }: HeaderProps) {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, isMainPage]);
 
   const isActive = (path: string) => {
     if (path === '/' && location === '/') return true;
     if (path !== '/' && location.startsWith(path)) return true;
     return false;
   };
-
-  const isMainPage = location === '/';
   const logoClass = isMainPage ? 'ecrist-logo ecrist-logo-main-page' : 'ecrist-logo';
 
   return (
-    <header className={`ecrist-header bg-[#001cba9c] ${isHeaderVisible ? 'header-visible' : 'header-hidden'}`}>
+    <header className={`ecrist-header bg-[#001cba9c] ${
+      isMainPage 
+        ? 'header-main-page' 
+        : (isHeaderVisible ? 'header-visible' : 'header-hidden')
+    }`}>
       <Link href="/" className={logoClass} data-testid="link-logo">
         <div className="ecrist-logo-icon">🌿</div>
         <div className="ecrist-logo-text">
