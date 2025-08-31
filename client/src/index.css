@@ -824,12 +824,13 @@
 }
 
 /* Responsive */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .ecrist-header {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     gap: 15px;
     text-align: center;
+    padding: clamp(10px, 2vh, 15px) clamp(15px, 3vw, 20px);
   }
   
   .ecrist-logo {
@@ -853,75 +854,135 @@
     grid-row: 3;
     justify-self: center !important;
   }
-}
 
-@media (max-width: 480px) {
+  /* Improved search form for mobile */
   .ecrist-search-form,
   .ecrist-search-form-overlay {
     flex-direction: column;
     gap: 15px;
     padding: 20px;
   }
-  
+
   .ecrist-form-group {
-    width: 100%;
-  }
-  
-  .ecrist-search-button {
-    width: 100%;
+    margin-bottom: 10px;
   }
 
-  .ecrist-products-grid {
-    grid-template-columns: 1fr;
+  .ecrist-search-button {
+    width: 100%;
+    margin-top: 10px;
   }
-  
+
+  /* Better product grid for mobile */
+  .ecrist-products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  /* Adjust hero height for mobile */
   .ecrist-hero-extended {
-    height: clamp(550px, 90vh, 650px);
+    height: clamp(350px, 60vh, 500px);
     padding: clamp(20px, 4vh, 30px) clamp(15px, 4vw, 25px);
   }
 }
 
-@media (max-width: 768px) {
+/* Tablet-specific optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
   .ecrist-header {
-    flex-wrap: wrap;
-    gap: 10px;
+    grid-template-columns: auto 1fr auto;
+    padding: clamp(12px, 2.5vh, 18px) clamp(25px, 3.5vw, 35px);
   }
-  
+
   .ecrist-nav-menu {
     gap: 20px;
   }
-  
+
+  .ecrist-products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+  }
+
   .ecrist-search-form,
   .ecrist-search-form-overlay {
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 15px;
   }
-  
+
   .ecrist-form-group {
     flex: 1;
-    min-width: calc(50% - 7.5px);
-  }
-  
-  .ecrist-search-button {
-    width: 100%;
-    order: 5;
+    min-width: 200px;
   }
 
-  .ecrist-products-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-  
-  .ecrist-hero-extended {
-    height: clamp(600px, 85vh, 750px);
+  .ecrist-search-button {
+    min-width: 120px;
+    height: 50px;
   }
 }
 
-@media (min-width: 1400px) {
+/* Very small mobile devices */
+@media (max-width: 480px) {
   .ecrist-container {
-    max-width: 1400px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 0;
+  }
+
+  .ecrist-nav-menu {
+    gap: 10px;
+  }
+
+  .ecrist-nav-link {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+
+  .ecrist-cart-btn,
+  .ecrist-sign-up-btn {
+    font-size: 11px;
+    padding: 6px 10px;
+    min-width: 60px;
+  }
+
+  .ecrist-products-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .ecrist-hero-extended {
+    height: clamp(300px, 50vh, 400px);
+    padding: 15px;
+  }
+
+  .ecrist-hero-title {
+    font-size: clamp(24px, 5vw, 36px);
+  }
+
+  .ecrist-search-form-overlay {
+    padding: 15px;
+    margin: 0 10px;
+  }
+}
+
+/* Touch-friendly improvements for all mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  .ecrist-nav-link,
+  .ecrist-cart-btn,
+  .ecrist-sign-up-btn,
+  .ecrist-add-to-cart-btn,
+  .ecrist-search-button {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
-  .ecrist-products-grid {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  .ecrist-product-card {
+    touch-action: manipulation;
+  }
+  
+  /* Larger tap targets for touch */
+  .ecrist-logo {
+    min-height: 44px;
+    padding: 8px;
   }
 }
