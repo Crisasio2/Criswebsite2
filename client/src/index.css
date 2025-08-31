@@ -382,7 +382,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow: hidden;
   padding: clamp(30px, 6vh, 50px) clamp(20px, 5vw, 40px);
   margin: clamp(20px, 4vw, 30px);
   border-radius: 15px;
@@ -1099,7 +1099,7 @@
     margin: clamp(2px, 0.5vw, 5px);
     justify-content: flex-start;
     gap: clamp(5px, 1vh, 10px);
-    overflow: visible;
+    overflow: hidden;
   }
 
   .ecrist-hero-title {
