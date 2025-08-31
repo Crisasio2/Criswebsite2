@@ -1,54 +1,42 @@
-import { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@tanstack/react-query';
-import { apiRequest } from '@/lib/queryClient';
+import { useState, useEffect, useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useSearchStore } from '@/lib/store';
 import ProductCard from '@/components/ProductCard';
-import type { Product, SearchFilters } from '@shared/schema';
+import type { Product } from '@shared/schema';
 
 export default function Products() {
   const { currentSearch, setSearch } = useSearchStore();
   const [searchValue, setSearchValue] = useState(currentSearch);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   
   const { data: allProducts = [], isLoading } = useQuery<Product[]>({
     queryKey: ['/api/products'],
   });
   
-  const searchMutation = useMutation({
-    mutationFn: async (filters: SearchFilters) => {
-      if (!filters.product && !filters.category) {
-        return allProducts;
-      }
-      const response = await apiRequest('POST', '/api/products/search', filters);
-      return response.json();
-    },
-    onSuccess: (results) => {
-      setFilteredProducts(results);
-    },
-  });
-  
+  // Sync searchValue with currentSearch from store
   useEffect(() => {
     setSearchValue(currentSearch);
-    if (currentSearch) {
-      searchMutation.mutate({ product: currentSearch, category: '', location: '' });
-    } else {
-      setFilteredProducts(allProducts);
+  }, [currentSearch]);
+  
+  // Memoized filtered products for better performance
+  const displayProducts = useMemo(() => {
+    if (!searchValue.trim()) {
+      return allProducts;
     }
-  }, [currentSearch, allProducts]);
+    
+    return allProducts.filter(product => {
+      const searchLower = searchValue.toLowerCase();
+      return (
+        product.name.toLowerCase().includes(searchLower) ||
+        product.description.toLowerCase().includes(searchLower)
+      );
+    });
+  }, [allProducts, searchValue]);
   
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchValue(value);
     setSearch(value);
-    
-    if (value.trim()) {
-      searchMutation.mutate({ product: value, category: '', location: '' });
-    } else {
-      setFilteredProducts(allProducts);
-    }
   };
-  
-  const displayProducts = filteredProducts.length > 0 ? filteredProducts : allProducts;
 
   if (isLoading) {
     return (
@@ -97,7 +85,7 @@ export default function Products() {
           ))}
         </div>
         
-        {searchValue && displayProducts.length === 0 && (
+        {searchValue.trim() && displayProducts.length === 0 && !isLoading && (
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">No se encontraron productos para "{searchValue}"</p>
           </div>
