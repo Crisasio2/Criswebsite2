@@ -109,7 +109,7 @@
   
   /* Aplicar padding-top solo cuando no estemos en la página principal */
   body:not(.main-page) {
-    padding-top: 120px;
+    padding-top: 140px;
   }
   
   /* En páginas de submenu, hacer que el fondo sea uniforme */
@@ -145,8 +145,10 @@
   left: 0;
   right: 0;
   width: 100%;
-  z-index: 1001;
+  z-index: 1002;
   margin: 0;
+  height: 32px;
+  box-sizing: border-box;
 }
 
 .ecrist-top-bar-content {
@@ -196,10 +198,11 @@
   left: 0;
   right: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1001;
   padding: 0;
   margin: 0;
   transition: transform 0.3s ease-in-out;
+  isolation: isolate;
 }
 
 .ecrist-enhanced-header.header-visible {
@@ -218,6 +221,9 @@
   align-items: center;
   padding: 15px 40px;
   gap: 20px;
+  background: white;
+  position: relative;
+  z-index: 1;
 }
 
 .ecrist-enhanced-logo {
