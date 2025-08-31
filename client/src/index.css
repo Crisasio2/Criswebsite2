@@ -383,6 +383,9 @@
   justify-content: center;
   overflow: hidden;
   padding: clamp(30px, 6vh, 50px) clamp(20px, 5vw, 40px);
+  margin: clamp(20px, 4vw, 30px);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px hsla(0, 0%, 0%, 0.15);
 }
 
 .ecrist-leaf-frame {
@@ -1046,13 +1049,3 @@
   }
 }
 
-/* White section with rounded corners */
-.ecrist-white-section {
-  background: var(--ecrist-white);
-  border-radius: 15px;
-  margin: clamp(20px, 4vw, 30px);
-  padding: clamp(30px, 6vh, 50px) clamp(20px, 5vw, 40px);
-  box-shadow: 0 10px 30px hsla(0, 0%, 0%, 0.1);
-  position: relative;
-  min-height: clamp(150px, 20vh, 200px);
-}

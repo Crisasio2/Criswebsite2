@@ -18,9 +18,6 @@ export default function Home() {
   return (
     <div>
       <Hero onSearch={handleSearch} />
-      <div className="ecrist-white-section">
-        {/* Contenido adicional aquí */}
-      </div>
     </div>
   );
 }
