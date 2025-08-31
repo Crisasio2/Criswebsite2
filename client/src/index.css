@@ -35,7 +35,7 @@
   --ecrist-brown: hsl(30, 45%, 35%);
   --ecrist-gradient: linear-gradient(135deg, hsl(82, 38%, 35%) 0%, hsl(60, 50%, 40%) 30%, hsl(30, 45%, 35%) 100%);
   --ecrist-gold-gradient: linear-gradient(135deg, hsl(45, 100%, 50%) 0%, hsl(38, 100%, 60%) 50%, hsl(45, 100%, 70%) 100%);
-  --ecrist-shine-gradient: linear-gradient(90deg, transparent 0%, hsla(45, 100%, 80%, 0.8) 50%, transparent 100%);
+  --ecrist-shine: linear-gradient(110deg, hsla(45, 100%, 90%, 0) 0%, hsla(45, 100%, 90%, 0) 40%, hsla(45, 100%, 90%, 1) 50%, hsla(45, 100%, 90%, 0) 60%, hsla(45, 100%, 90%, 0) 100%);
   --ecrist-white: hsl(0, 0%, 100%);
   --ecrist-shadow: hsla(0, 0%, 0%, 0.1);
   
@@ -432,6 +432,10 @@
   line-height: 1.1;
   margin-bottom: clamp(10px, 2vh, 15px);
   letter-spacing: -0.5px;
+  background: var(--ecrist-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-shadow: 2px 2px 4px hsla(82, 64%, 20%, 0.3);
   animation: slideUp 1s ease-out 0.7s both;
 }
@@ -440,39 +444,31 @@
   font-size: clamp(14px, 2.5vw, 16px);
   margin-bottom: clamp(30px, 8vh, 50px);
   font-weight: 600;
-  background: var(--ecrist-gold-gradient);
+  background: linear-gradient(
+    90deg,
+    hsl(45, 100%, 45%) 0%,
+    hsl(38, 100%, 55%) 25%,
+    hsl(45, 100%, 75%) 50%,
+    hsl(38, 100%, 55%) 75%,
+    hsl(45, 100%, 45%) 100%
+  );
+  background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
-  overflow: hidden;
-  text-shadow: 0 0 10px hsla(45, 100%, 60%, 0.8);
-  animation: slideUp 1s ease-out 0.9s both;
+  animation: slideUp 1s ease-out 0.9s both, goldShine 4s infinite ease-in-out;
 }
 
-.ecrist-hero-subtitle::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--ecrist-shine-gradient);
-  animation: shine 3s infinite linear;
-  pointer-events: none;
-}
-
-@keyframes shine {
+@keyframes goldShine {
   0% {
-    left: -100%;
-    opacity: 0;
+    background-position: 300% 0;
   }
   50% {
-    opacity: 1;
+    background-position: -100% 0;
   }
   100% {
-    left: 100%;
-    opacity: 0;
+    background-position: 300% 0;
   }
 }
 
