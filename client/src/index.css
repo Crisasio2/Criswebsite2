@@ -107,9 +107,14 @@
     padding: 0 !important;
   }
   
-  /* Aplicar padding-top para todas las páginas para evitar que el header tape el contenido */
-  body {
+  /* Solo aplicar padding-top en la página principal donde el header es fijo */
+  body.main-page {
     padding-top: clamp(200px, 22vh, 250px);
+  }
+  
+  /* En otras páginas, no aplicar padding-top porque el header será estático */
+  body:not(.main-page) {
+    padding-top: 0;
   }
   
   /* En páginas de submenu, hacer que el fondo sea uniforme */
@@ -140,16 +145,21 @@
   color: white;
   padding: clamp(6px, 1vh, 12px) 0;
   font-size: clamp(12px, 1.8vw, 16px);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: static;
   width: 100vw;
   z-index: 1002;
   margin: 0;
   height: clamp(28px, 4vh, 40px);
   box-sizing: border-box;
   overflow: hidden;
+}
+
+/* Solo en la página principal el top-bar será fijo */
+body.main-page .ecrist-top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .ecrist-top-bar-content {
@@ -194,13 +204,18 @@
 .ecrist-enhanced-header {
   background: white !important;
   box-shadow: 0 clamp(2px, 0.5vh, 6px) clamp(8px, 2vh, 16px) rgba(0, 0, 0, 0.1);
+  position: static;
+  width: 100%;
+  z-index: 1001;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Solo en la página principal el header será fijo */
+body.main-page .ecrist-enhanced-header {
   position: fixed;
   top: clamp(28px, 4vh, 40px);
   left: 0;
   right: 0;
-  width: 100%;
-  z-index: 1001;
-  transition: transform 0.3s ease-in-out;
 }
 
 .ecrist-enhanced-header.header-visible {
@@ -517,8 +532,12 @@
   }
 }
 @media (max-width: 768px) {
-  body {
+  body.main-page {
     padding-top: clamp(220px, 25vh, 260px);
+  }
+  
+  body:not(.main-page) {
+    padding-top: 0;
   }
   
   .ecrist-header-container {
@@ -560,8 +579,12 @@
 }
 
 @media (max-width: 480px) {
-  body {
+  body.main-page {
     padding-top: clamp(240px, 28vh, 280px);
+  }
+  
+  body:not(.main-page) {
+    padding-top: 0;
   }
   
   .ecrist-top-bar {
@@ -580,7 +603,7 @@
     gap: clamp(6px, 2vw, 12px);
   }
   
-  .ecrist-enhanced-header {
+  body.main-page .ecrist-enhanced-header {
     top: clamp(24px, 6vw, 35px);
   }
   
