@@ -213,12 +213,11 @@
 .ecrist-header-container {
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-  justify-content: center;
-  padding: 15px 20px;
-  gap: 30px;
-  position: relative;
+  padding: 15px 40px;
+  gap: 20px;
 }
 
 .ecrist-enhanced-logo {
@@ -228,10 +227,9 @@
   text-decoration: none;
   color: var(--ecrist-primary);
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   transition: all 0.3s ease;
-  position: absolute;
-  left: 20px;
+  justify-self: start;
 }
 
 .ecrist-enhanced-logo .ecrist-logo-icon {
@@ -263,11 +261,11 @@
 }
 
 .ecrist-search-section {
-  max-width: 500px;
-  width: 100%;
   display: flex;
   justify-content: center;
-  flex: 1;
+  justify-self: center;
+  width: 100%;
+  max-width: 500px;
 }
 
 .ecrist-search-input-container {
@@ -277,9 +275,9 @@
 
 .ecrist-main-search-input {
   width: 100%;
-  padding: 12px 50px 12px 16px;
+  padding: 10px 45px 10px 15px;
   border: 2px solid var(--ecrist-primary-light);
-  border-radius: 25px;
+  border-radius: 20px;
   font-size: 14px;
   outline: none;
   transition: border-color 0.3s ease;
@@ -315,10 +313,9 @@
 .ecrist-user-actions {
   display: flex;
   align-items: center;
-  gap: 15px;
-  font-size: 14px;
-  position: absolute;
-  right: 20px;
+  gap: 12px;
+  font-size: 13px;
+  justify-self: end;
 }
 
 .ecrist-user-info {
@@ -433,28 +430,32 @@
 /* Responsive Design for Enhanced Header */
 @media (max-width: 768px) {
   .ecrist-header-container {
-    flex-direction: column;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
     gap: 15px;
-    padding: 15px 20px 20px 20px;
+    padding: 15px 20px;
   }
   
   .ecrist-enhanced-logo {
-    position: static;
-    align-self: center;
-    order: 1;
-  }
-  
-  .ecrist-search-section {
-    order: 2;
-    max-width: 100%;
-    width: 100%;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    font-size: 16px;
   }
   
   .ecrist-user-actions {
-    position: static;
-    align-self: center;
-    order: 3;
-    gap: 10px;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    gap: 8px;
+    font-size: 12px;
+  }
+  
+  .ecrist-search-section {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: stretch;
+    max-width: none;
   }
   
   .ecrist-purchases-link {
