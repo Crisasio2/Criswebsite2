@@ -22,7 +22,7 @@ export default function Header({ onCartToggle }: HeaderProps) {
         <div className="ecrist-logo-icon">🌿</div>
         <div className="ecrist-logo-text">
           <span className="ecrist-logo-short">E'Crist Commerce</span>
-          <span className="ecrist-logo-full">EcoCrist Commerce</span>
+          <span className="ecrist-logo-full">EcoCrist</span>
         </div>
       </Link>
       <nav className="ecrist-nav-menu">
